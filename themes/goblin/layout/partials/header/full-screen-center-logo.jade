@@ -1,0 +1,24 @@
+.header.header-full-screen-center-logo(data-layout="wide" data-sticky="false" data-color-scheme="light" data-direction="default")
+	.header-wrap
+		.nav-container
+			a.mini-nav-button(href="javascript:;")
+				span navigation
+		.addition-container
+			include ../social-icons
+			a.search-button(href="javascript:;")
+				i.fa.fa-search
+.full-screen-nav
+	.full-screen-nav-wrap
+		.full-screen-nav-wrap-inner
+			ul.full-screen-nav-items
+				if blog.navigation
+					div= navigation
+				else
+					include ../menu-items
+.search-container
+	.search-container-wrap
+		.search-container-wrap-inner
+			.search-box
+				h3.search-label Search
+				input#search-keyword(type="search" name="search-keyword" placeholder="Type and hit enter!")
+				ul.search-result

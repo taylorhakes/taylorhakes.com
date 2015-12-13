@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= meta_title
+    meta(name="description", content=meta_description)
+    link(href="/img/favicon.png", rel="shortcut icon")
+    link(href="/img/apple-touch-icon-precomposed.png", rel="apple-touch-icon")
+    meta(name="HandheldFriendly", content="True")
+    meta(name="MobileOptimized" content="320")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    if is_post()
+      meta(name="twitter:card" content="summary")
+      meta(name="twitter:site" content="")
+      meta(name="twitter:title" content=post.title)
+      meta(name="twitter:description" content=post.excerpt)
+      meta(name="twitter:creator" content=post.author)
+
+      meta(property="og:type" content="article")
+      meta(property="og:title" content=post.title)
+      meta(property="og:description" content=post.excerpt)
+      meta(property="og:site_name" content=post.title)
+    else
+      meta(name="twitter:card" content="summary")
+      meta(name="twitter:site" content="")
+      meta(name="twitter:title" content=config.title)
+      meta(name="twitter:description" content=config.description)
+      meta(name="twitter:creator" content=config.author)
+
+      meta(property="og:type" content="article")
+      meta(property="og:title" content=config.title)
+      meta(property="og:description" content=config.description)
+      meta(property="og:site_name" content=config.title)
+      meta(property="fb:admins" content="")
+
+    link(rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400")
+    link(rel="stylesheet" type="text/css" href="/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/font-awesome.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/magnific-popup.css")
+    link(rel="stylesheet" type="text/css" href="/css/YTPlayer.css")
+    link(rel="stylesheet" type="text/css" href="/css/style.css")
+    link(rel="stylesheet" type="text/css" href="/css/colors/default.css")
+  body(data-site-layout="wide", data-post-mode="multimedia", data-post-align="center", data-uppercase="true")
+    #fb-root
+    //
+        [if lt IE 9]
+        <div class="outdated-frame">
+          You are using an <strong>outdated</strong> span browser. Please <a href="http://www.google.com/chrome/intl/en/landing_chrome.html">upgrade your browser</a>
+        </div>
+        ![endif]
+    .body-wrap
+      include partials/header/full-screen-center-logo
+      .main-wrap= body
+      include partials/footer/one-column
+    script(src="https://code.jquery.com/jquery-2.1.4.min.js")
+    script(src="/js/bootstrap.min.js")
+    script(src="/js/jquery.mb.YTPlayer.js")
+    script(src="/js/sdk.js")
+    script(src="/js/waveform.js")
+    script(src="/js/jquery.fitvids.js")
+    script(src="/js/jquery.magnific-popup.min.js")
+    script(src="/js/jqBootstrapValidation.js")
+    script(src="/js/imagesloaded.pkgd.min.js")
+    script(src="/js/moment.min.js")
+    script(src="/js/pace.min.js")
+    script(src="/js/jquery.placeholder.js")
+    script(src="/js/main.js")
