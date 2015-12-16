@@ -1,0 +1,14 @@
+#site-intro.personal.covered(style="background-image: url(#{config.cover_img})" data-more-button-style="icon-and-text")
+  .intro-wrap
+    .intro-text
+      .author-avatar
+        img.img-responsive(src=config.author_img)
+      .author-info
+        .author-name= config.title
+        .author-bio= config.subtitle
+      include ../social-icons
+  .more-detail
+    .scrollDown
+      span.mouseBorder
+      span.mouseWheel
+    a.start(href="#start") Discover Now

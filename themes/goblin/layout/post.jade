@@ -1,0 +1,31 @@
+main.body-content(role="main")
+  section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('' + page.tags || page.featured ? 'has-sub-meta' : ''))
+    .post-header
+      .header-wrap
+        h1.post-title(itemprop="name headline")
+          | !{page.title}
+        .post-meta By #{config.author} /
+          time(datetime=page.date itemprop="datePublished")= page.date.fromNow()
+          .line
+          if page.tags
+            .post-meta
+              i.fa.fa-tags
+              span
+                if page.featured
+                  span Featured
+                  span on
+                  span= page.tags.join(', ')
+                else
+                  if page.featured
+                    .post-meta
+                      i.fa.fa-star
+                      span Featured
+    .post-content(itemprop="articleBody")
+      div
+        | !{page.content}
+      .share-box
+        .share-box-wrap
+          h3.box-title Thanks for reading!
+            span.box-sub-title Don't forget to spread the word:
+            include partials/social-icons
+  section.next-post(data-current-url="")

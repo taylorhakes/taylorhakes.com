@@ -1,0 +1,20 @@
+main.body-content(role="main")
+  section
+    .post-header
+      .header-wrap
+        h2.post-title
+          a href="{{url}}">{{{title}}}</a></h2>
+        .post-meta #{config.author} / #{page.date}
+          .line
+            if page.tags
+              .post-meta
+                i.fa.fa-tags
+                if page.featured
+                  span Featured
+                span on #{tags.join(', ')}
+              else
+              if page.featured
+                .post-meta
+                  i.fa.fa-star
+                  span Featured
+    .post-content post.content

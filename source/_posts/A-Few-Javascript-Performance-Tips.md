@@ -5,9 +5,9 @@ updated: '2015-08-20 21:43:21'
 date: 2015-08-18 23:27:03
 tags:
 ---
-
-![thumb image-post mask](/content/images/2015/08/speed.jpg)
-Recently, I've discovered some simple tricks to get my Javascript code to execute faster.  This is not a full list, just some that I use fairly often. If anyone has others, please post them in the comments. It would be great to compile a large list.
+Recently, I've discovered some simple tricks to get my Javascript code to execute faster.
+<!-- more -->
+This is not a full list, just some that I use fairly often. If anyone has others, please post them in the comments. It would be great to compile a large list.
 
 Before I begin, I would like to emphasize a phrase that every developer should know. "Premature optimization is the root all evil." Optimization can only get you so far. Good programming practices and code structure are more important. With that, let's get started.
 <h3>Use for loops instead of Array.forEach, for.. in, jQuery.each etc.</h3>
@@ -30,13 +30,13 @@ In general, a for loop will execute 10x faster than Array.forEach or for..in. He
 <h3>Don't create functions in loops or commonly used code</h3>
 Each function carries memory overhead. Define functions that are commonly used. Only use anonymous function when necessary.
 <pre><code class="javascript">for( var i = 0; i &lt; 100; i++) {
-    setTimeout(function() { 
-        .. do something 
+    setTimeout(function() {
+        .. do something
     }, 10);
 }</code></pre>
 instead do this
 <pre><code class="javascript">function repeatedFn() {
-    .. do something 
+    .. do something
 }
 for( var i = 0; i &lt; 100; i++) {
     setTimeout(repeatedFn, 10);
