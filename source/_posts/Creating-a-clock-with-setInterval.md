@@ -1,8 +1,7 @@
 title: Creating a clock with setInterval
 permalink: creating-a-clock-with-setinterval
 id: 3
-updated: '2015-08-20 21:47:44'
-date: 2015-08-18 23:03:09
+date: 2015-08-03
 tags:
 ---
 
@@ -25,7 +24,7 @@ function updateClock() {
   var clockEl = document.getElementById('clock'),
     dateObj;
   date += second;
-  dateObj = new Date(date); 
+  dateObj = new Date(date);
   clockEl.innerHTML = pad(dateObj.getHours()) + ':' + pad(dateObj.getMinutes()) + ':' + pad(dateObj.getSeconds());
 }
 
@@ -44,7 +43,7 @@ function pad(num) {
 
 function updateClock() {
   var clockEl = document.getElementById('clock'),
-    dateObj = new Date(); 
+    dateObj = new Date();
   clockEl.innerHTML = pad(dateObj.getHours()) + ':' + pad(dateObj.getMinutes()) + ':' + pad(dateObj.getSeconds());
 }
 
@@ -53,7 +52,7 @@ setInterval(updateClock, second);
 
 <iframe width="100%" height="100" src="https://jsfiddle.net/skvg2jvz/1/embedded/result%2Cjs%2Chtml/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-That works a lot better, the clock is no longer getting off the original time. But, if you watch the clock closely, you will see it occasionally skip a second and it is often not changing at the exact same time as the system clock. 
+That works a lot better, the clock is no longer getting off the original time. But, if you watch the clock closely, you will see it occasionally skip a second and it is often not changing at the exact same time as the system clock.
 
 That happens because setInterval does not always call the function every second. It executes at (1 second) + (time Chrome is doing other things). Read my previous blog post on setInterval to get more details <a href="https://taylorhakes.com/2013/11/10/understanding-setinterval/">Understanding setInterval</a> . It also starts at a random time. It may be at the beginning or the end of the second.
 
@@ -70,13 +69,13 @@ function pad(num) {
 
 function updateClock() {
   var clockEl = document.getElementById('clock'),
-    dateObj = new Date(); 
+    dateObj = new Date();
   clockEl.innerHTML = pad(dateObj.getHours()) + ':' + pad(dateObj.getMinutes()) + ':' + pad(dateObj.getSeconds());
 }
 
 function clockInterval(fn) {
     var time = second - (Date.now() % second);
-    
+
     setTimeout(function() {
         fn();
         clockInterval(fn);
@@ -88,6 +87,6 @@ clockTimer(updateClock);
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/qnqLzqtL/embedded/result%2Cjs%2Chtml/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-Now we have a clock that shows the right time and ticks at the correct time. It still isn't perfect, but it's as good as we can do while not blocking the event loop. 
+Now we have a clock that shows the right time and ticks at the correct time. It still isn't perfect, but it's as good as we can do while not blocking the event loop.
 
 If you want to use this code, I created a <a href="https://github.com/taylorhakes/clock-interval" target="_blank">github repo</a> and <a href="https://www.npmjs.com/package/clock-interval" target="_blank">a npm module</a>. If you have ideas to make this better, please post in the comments.

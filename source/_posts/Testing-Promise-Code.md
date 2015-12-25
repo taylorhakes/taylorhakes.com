@@ -1,8 +1,7 @@
 title: Testing Promise Code
 permalink: testing-promise-code
 id: 5
-updated: '2015-08-20 19:16:59'
-date: 2015-08-18 23:40:53
+date: 2015-08-19
 tags:
 ---
 
@@ -135,7 +134,7 @@ The library currently only works with `Promise` in the global scope. The library
 
 <pre><code class="javascript">it('Promise Test', function() {
   var prom = promiseFunc();
-  
+
   // Remedy setTimeout synchronously, etc
   jasmine.clock().tick(101);
 

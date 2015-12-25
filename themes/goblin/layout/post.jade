@@ -1,5 +1,5 @@
 main.body-content(role="main")
-  section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('' + page.tags || page.featured ? 'has-sub-meta' : ''))
+  section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('post formatted ' + (page.tags || page.featured ? 'has-sub-meta' : '')))
     .post-header
       .header-wrap
         h1.post-title(itemprop="name headline")
@@ -29,3 +29,11 @@ main.body-content(role="main")
             span.box-sub-title Don't forget to spread the word:
             include partials/social-icons
   section.next-post(data-current-url="")
+    .next-post-wrap
+      .next-label Next Story
+      h2.post-title
+        a(href=url_for(page.next.path))= page.next.title
+      .post-meta= page.next.date.fromNow()
+      .next-arrow
+        a(href=url_for(page.next.path))
+          i.fa.fa-angle-double-down

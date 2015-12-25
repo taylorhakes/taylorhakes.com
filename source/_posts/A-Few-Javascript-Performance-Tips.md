@@ -1,8 +1,7 @@
 title: A Few Javascript Performance Tips
 permalink: a-few-javascript-performance-tips
 id: 4
-updated: '2015-08-20 21:43:21'
-date: 2015-08-18 23:27:03
+date: 2013-05-19
 tags:
 ---
 Recently, I've discovered some simple tricks to get my Javascript code to execute faster.

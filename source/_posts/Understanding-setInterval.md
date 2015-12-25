@@ -1,8 +1,7 @@
 title: Understanding setInterval
 permalink: understanding-setinterval
 id: 2
-updated: '2015-08-20 21:40:09'
-date: 2015-08-18 22:29:16
+date: 2013-11-10
 tags:
 ---
 
@@ -20,13 +19,13 @@ We decided to create a simple test. The code executes a setInterval at a 1 secon
 <pre>
 <code class="javascript">var start = new Date();
 
-// Mimics a long running call for a number of milliseconds 
+// Mimics a long running call for a number of milliseconds
 function waitMilliseconds(milliseconds) {
   var start = +(new Date());
   while(start + milliseconds > +(new Date())) {}
 }
 
-// First setInterval call. console.log the time 
+// First setInterval call. console.log the time
 setInterval(function() {
   var current = new Date();
   console.log('setInterval executing: ' + (current - start));
@@ -34,17 +33,17 @@ setInterval(function() {
 
 // Some code that takes a while to run
 var current = new Date();
-console.log('start long running code: ' + (current - start)); 
+console.log('start long running code: ' + (current - start));
 waitMilliseconds(1500);
 current = new Date();
 console.log('end long running code: ' + (current - start));</code>
 </pre>
 If John's explanation was correct, we should see something like this. The first setInterval would take 1.5 seconds (because of the slow code), the second would take .5 seconds to get back in sync (with the original call) and then after it would continue at 1s intervals.
 <pre>
-<code class="javascript">start long running code: 0 
+<code class="javascript">start long running code: 0
 end long running code: 1500
-setInterval executing: 1501 
-setInterval executing: 2000 
+setInterval executing: 1501
+setInterval executing: 2000
 setInterval executing: 3000
 </code></pre>
 The actual results
@@ -60,7 +59,7 @@ It appears that setInterval executes at the interval based on the last time it w
 <code class="javascript">// Recreation of setInterval
 function pseudoSetInterval(fn, time /* [, param1, param2, ...]*/) {
     var args = Array.prototype.slice.call(arguments,2);
-    setTimeout(function interval() {  
+    setTimeout(function interval() {
         setTimeout(interval, time);
         fn.apply(window, args);
     }, time);
@@ -70,7 +69,7 @@ To make sure that was correct, we created another test with only setInterval. We
 <code class="javascript">// Get the start of code execution
 var start = new Date();
 
-// Mimics a long running call for a number of milliseconds 
+// Mimics a long running call for a number of milliseconds
 function waitMilliseconds(milliseconds) {
   var start = +(new Date());
   while(start + milliseconds > +(new Date())) {}

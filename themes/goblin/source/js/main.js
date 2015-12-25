@@ -10,14 +10,14 @@ paceOptions = {
 };
 var trackIndex=0;
 var sfApp={
-    scrollTimer:null,    
+    scrollTimer:null,
     formatDate:function(date){
         return moment(date).fromNow();
-    },       
-    nextPost:function(){          
+    },
+    nextPost:function(){
         if($('.next-post').length){
             var page = 0;
-            var isNext=false;            
+            var isNext=false;
             var result = new Array();
             var $nextPostContainer = $('.next-post');
             var currentUrl = $nextPostContainer.data('current-url');
@@ -33,28 +33,28 @@ var sfApp={
                         url: ajaxUrl,
                         dataType: "xml",
                         success: function(xml) {
-                            if($(xml).length){                                                           
-                                $('item', xml).each( function() {                                    
+                            if($(xml).length){
+                                $('item', xml).each( function() {
                                     var itemUrl=$(this).find('link').eq(0).text();
-                                    if(isNext){                                          
+                                    if(isNext){
                                         result['link'] = itemUrl;
                                         result['title'] = $(this).find('title').eq(0).text();
-                                        result['pubDate'] = sfApp.formatDate( new Date($(this).find('pubDate').eq(0).text()));                                        
-                                        var $desc = $($(this).find('description').eq(0).text());                                          
+                                        result['pubDate'] = sfApp.formatDate( new Date($(this).find('pubDate').eq(0).text()));
+                                        var $desc = $($(this).find('description').eq(0).text());
                                         if($desc.first().is('iframe')){
                                             var $iframeEl=$desc.first();
                                             var frameSrc=$desc.first().attr('src');
                                             if(frameSrc.indexOf('youtube.com')>=0){
                                                 var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;
                                                 var youtubeId ='';
-                                                var regResult= frameSrc.match(regExp);                                                
+                                                var regResult= frameSrc.match(regExp);
                                                 if(regResult[3] != 'undefined' && regResult[3]!=''){
-                                                    result['background'] = 'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg';     
-                                                    result['cssClass'] = 'video-post';                                   
-                                                }   
+                                                    result['background'] = 'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg';
+                                                    result['cssClass'] = 'video-post';
+                                                }
                                             }
-                                            else if(frameSrc.indexOf('vimeo.com')>=0){                                                      
-                                                var regExp = /video\/(\d+)/;                                                
+                                            else if(frameSrc.indexOf('vimeo.com')>=0){
+                                                var regExp = /video\/(\d+)/;
                                                 var regResult= frameSrc.match(regExp);
                                                 if(regResult[1] != 'undefined' && regResult[1] != ''){
                                                     var vimeoUrl='http://vimeo.com/api/v2/video/'+regResult[1]+'.json';
@@ -65,7 +65,7 @@ var sfApp={
                                                         dataType: "json",
                                                         success: function(vimeoResult) {
                                                             if(vimeoResult.length){
-                                                                $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');                                                    
+                                                                $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');
                                                                 $nextPostContainer.addClass('video-post');
                                                                 var htmlStr='<div class="next-post-wrap">\
                                                                                 <div class="next-label">Next Story</div>\
@@ -73,21 +73,21 @@ var sfApp={
                                                                                 <div class="post-meta">'+result['pubDate']+'</div>\
                                                                                 <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
                                                                             </div>';
-                                                                $nextPostContainer.html(htmlStr);   
+                                                                $nextPostContainer.html(htmlStr);
                                                             }
                                                         }
                                                     });
                                                 }
                                             }
-                                        }                                        
+                                        }
                                         else if($desc.has('img[alt*="image-post"]').length){
                                             var $backgroundEl = $desc.find('img[alt*="image-post"]');
                                             if($backgroundEl.length){
                                                 result['cssClass'] = $backgroundEl.attr('alt');
                                                 result['background'] = $backgroundEl.attr('src');
                                             }
-                                        }                                        
-                                        else if($desc.has('a[href*="youtube.com"]').length){                                            
+                                        }
+                                        else if($desc.has('a[href*="youtube.com"]').length){
                                             var $videoEl=$desc.find('a[href*="youtube.com"]');
                                             if($videoEl.length){
                                                 var videoUrl=$videoEl.attr('href');
@@ -99,22 +99,22 @@ var sfApp={
                                                     }
                                                 }
                                             }
-                                        }                                        
-                                        else if($desc.has('a[href*="vimeo.com"]').length){                                                                            
+                                        }
+                                        else if($desc.has('a[href*="vimeo.com"]').length){
                                             var $vimeoVideoEl=$desc.find('a[href*="vimeo.com"]');
-                                            var vimeoVideoUrl=$vimeoVideoEl.attr('href');                                            
+                                            var vimeoVideoUrl=$vimeoVideoEl.attr('href');
                                             var regExp = /vimeo.com\/(\d+)/;
                                             var vimeoId ='';
                                             var regResult= vimeoVideoUrl.match(regExp);
-                                            if(regResult[1] != 'undefined' && regResult[1] != '') {                                                
-                                                var vimeoUrl='http://vimeo.com/api/v2/video/'+regResult[1]+'.json';                                                
+                                            if(regResult[1] != 'undefined' && regResult[1] != '') {
+                                                var vimeoUrl='http://vimeo.com/api/v2/video/'+regResult[1]+'.json';
                                                 $.ajax({
                                                     type: 'GET',
                                                     url: vimeoUrl,
                                                     dataType: "json",
-                                                    success: function(vimeoResult) {                                                        
+                                                    success: function(vimeoResult) {
                                                         if(vimeoResult.length && vimeoResult[0].thumbnail_large != ''){
-                                                            $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');                                                    
+                                                            $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');
                                                             $nextPostContainer.addClass('video-post');
                                                             var htmlStr='<div class="next-post-wrap">\
                                                                             <div class="next-label">Next Story</div>\
@@ -122,14 +122,14 @@ var sfApp={
                                                                             <div class="post-meta">'+result['pubDate']+'</div>\
                                                                             <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
                                                                         </div>';
-                                                            $nextPostContainer.html(htmlStr);                                                            
+                                                            $nextPostContainer.html(htmlStr);
                                                         }
                                                     }
                                                 });
                                             }
                                         }
-                                        if(result['link'] != undefined){                                            
-                                            if(result['background'] != undefined && result['background'] != ''){                                                
+                                        if(result['link'] != undefined){
+                                            if(result['background'] != undefined && result['background'] != ''){
                                                 $nextPostContainer.css('background-image', 'url("'+result['background']+'")');
                                             }
                                             if(result['cssClass'] != undefined && result['cssClass'] != ''){
@@ -142,24 +142,24 @@ var sfApp={
                                                             <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
                                                         </div>';
                                             $nextPostContainer.html(htmlStr);
-                                        }                                        
-                                        clearInterval(timeout);                                        
-                                        return false;                     
+                                        }
+                                        clearInterval(timeout);
+                                        return false;
                                     }
                                     else if(currentUrl == itemUrl){
-                                        isNext = true;                                        
-                                    }                                    
+                                        isNext = true;
+                                    }
                                 });
                             }
                         }
                     });
-                }, 2000);                                
+                }, 2000);
             }
         }
     },
     formatBlogAjax:function($newElements){
-        if($newElements.length && ( $('body').is('.post-template') || 
-            ( $('body').attr('data-post-mode')=='multimedia' && ( $('body').is('.home-template') || $('body').is('.archive-template') || $('body').is('.tag-template') ) ) ) ){        
+        if($newElements.length && ( $('body').is('.post-template') ||
+            ( $('body').attr('data-post-mode')=='multimedia' && ( $('body').is('.home-template') || $('body').is('.archive-template') || $('body').is('.tag-template') ) ) ) ){
             jQuery.each($newElements,function( i, val ){
                 var $this=jQuery(val);
                 var $postHeader=$this.find('.post-header');
@@ -168,7 +168,7 @@ var sfApp={
                 if($postContent.has('img[alt*="image-post"]').length){
                     var $backgroundEl=$postContent.find('img[alt*="image-post"]');
                     $postHeader.addClass($backgroundEl.attr('alt'));
-                    $postHeader.css('background-image', 'url("'+$backgroundEl.attr('src')+'")');                        
+                    $postHeader.css('background-image', 'url("'+$backgroundEl.attr('src')+'")');
                 }
                 // Video Post By LINK
                 else if($postContent.has('a[href*="youtube.com"]').length){
@@ -182,11 +182,11 @@ var sfApp={
                                 $postHeader.addClass('mobile');
                                 var youtubeId = videoUrl.match(/[\\?&]v=([^&#]*)/)[1];
                                 if(youtubeId!=''){
-                                    $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+youtubeId+'/0.jpg'+'")'); 
+                                    $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+youtubeId+'/0.jpg'+'")');
                                     $line.html('<a class="video-playback youtube" href="'+videoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                                    $('.video-playback',$line).tooltip();                                    
+                                    $('.video-playback',$line).tooltip();
                                     var $videoPlayback=$line.find('.video-playback');
-                                    $videoPlayback.magnificPopup({                                            
+                                    $videoPlayback.magnificPopup({
                                         type: 'iframe',
                                         mainClass: 'mfp-fade',
                                         removalDelay: 160,
@@ -201,7 +201,7 @@ var sfApp={
                                 var $video=$postHeader.find('.video');
                                 $video.data("property",videoData);
                                 $video.mb_YTPlayer();
-                                $video.on("YTPStart",function(){                                     
+                                $video.on("YTPStart",function(){
                                     $postHeader.addClass('playing');
                                 });
                                 $video.on("YTPPause",function(){
@@ -209,28 +209,28 @@ var sfApp={
                                 });
                                 $video.on("YTPEnd",function(){
                                     $postHeader.removeClass('playing');
-                                });                                    
+                                });
                                 $line.html('<a class="video-playback youtube" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                                $('.video-playback',$line).tooltip();                                    
+                                $('.video-playback',$line).tooltip();
                             }
                         }
                     }
-                } 
-                // Video Post By iframe                   
-                else if($postContent.has('iframe[src^="//www.youtube.com"]').length){                        
+                }
+                // Video Post By iframe
+                else if($postContent.has('iframe[src^="//www.youtube.com"]').length){
                     var $videoEl=$postContent.find('iframe[src^="//www.youtube.com"]');
-                    var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;                        
+                    var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;
                     var regResult= $videoEl.attr('src').match(regExp);
                     if(regResult[3] != undefined && regResult[3]!=''){
                         $postHeader.addClass('has-background video-post');
                         var $line = $postHeader.find('.line');
                         if(sfApp.isMobile()){
                             $postHeader.addClass('mobile');
-                            $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg'+'")'); 
+                            $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg'+'")');
                             $line.html('<a class="video-playback youtube" href="http://www.youtube.com/watch?v='+videoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                            $('.video-playback',$line).tooltip();                                    
+                            $('.video-playback',$line).tooltip();
                             var $videoPlayback=$line.find('.video-playback');
-                            $videoPlayback.magnificPopup({                                            
+                            $videoPlayback.magnificPopup({
                                 type: 'iframe',
                                 mainClass: 'mfp-fade',
                                 removalDelay: 160,
@@ -239,13 +239,13 @@ var sfApp={
                             });
                         }
                         else{
-                            var videoUrl='http://www.youtube.com/watch?v='+regResult[3];                                
+                            var videoUrl='http://www.youtube.com/watch?v='+regResult[3];
                             var videoData="{videoURL:'"+videoUrl+"', containment:'self',showControls:true, startAt:0,mute:false,autoPlay:false,loop:false, opacity:1,quality:'highres'}";
                             $postHeader.append('<div class="video player"></div>');
                             var $video=$postHeader.find('.video');
                             $video.data("property",videoData);
                             $video.mb_YTPlayer();
-                            $video.on("YTPStart",function(){                                     
+                            $video.on("YTPStart",function(){
                                 $postHeader.addClass('playing');
                             });
                             $video.on("YTPPause",function(){
@@ -253,9 +253,9 @@ var sfApp={
                             });
                             $video.on("YTPEnd",function(){
                                 $postHeader.removeClass('playing');
-                            });                                
+                            });
                             $line.html('<a class="video-playback youtube" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                            $('.video-playback',$line).tooltip();                                    
+                            $('.video-playback',$line).tooltip();
                         }
                     }
                 }
@@ -281,15 +281,15 @@ var sfApp={
                                     $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');
                                     var $line = $postHeader.find('.line');
                                     $line.html('<a class="video-playback vimeo" href="'+vimeoVideoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                                    $('.video-playback',$line).tooltip();                                    
+                                    $('.video-playback',$line).tooltip();
                                     var $videoPlayback=$line.find('.video-playback');
-                                    $videoPlayback.magnificPopup({                                            
+                                    $videoPlayback.magnificPopup({
                                         type: 'iframe',
                                         mainClass: 'mfp-fade',
                                         removalDelay: 160,
                                         preloader: false,
                                         fixedContentPos: false
-                                    });                                        
+                                    });
                                 }
                             }
                         });
@@ -304,7 +304,7 @@ var sfApp={
                     var vimeoId ='';
                     var regResult= vimeoVideoUrl.match(regExp);
                     if(regResult!=null)
-                        vimeoId=regResult[1];                        
+                        vimeoId=regResult[1];
                     if(vimeoId!=''){
                         var vimeoUrl='http://vimeo.com/api/v2/video/'+vimeoId+'.json';
                         $.ajax({
@@ -317,15 +317,15 @@ var sfApp={
                                     $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');
                                     var $line = $postHeader.find('.line');
                                     $line.html('<a class="video-playback vimeo" href="https://vimeo.com/'+vimeoId+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                                    $('.video-playback',$line).tooltip();                                    
+                                    $('.video-playback',$line).tooltip();
                                     var $videoPlayback=$line.find('.video-playback');
-                                    $videoPlayback.magnificPopup({                                            
+                                    $videoPlayback.magnificPopup({
                                         type: 'iframe',
                                         mainClass: 'mfp-fade',
                                         removalDelay: 160,
                                         preloader: false,
                                         fixedContentPos: false
-                                    });                                        
+                                    });
                                 }
                             }
                         });
@@ -337,7 +337,7 @@ var sfApp={
                     $postHeader.append('<div class="audio sc-player"></div>');
                     var $audio=$postHeader.find('.audio');
                     $audioEl.appendTo($audio);
-                    $postHeader.addClass('has-background audio-post');                        
+                    $postHeader.addClass('has-background audio-post');
                     $audio.scPlayer({
                         randomize: true
                     });
@@ -350,50 +350,50 @@ var sfApp={
                     var $audioEl=$postContent.find('iframe[src^="https://w.soundcloud.com"]');
                     var regExp =/soundcloud.com\/tracks\/(\d+)/;
                     var soundcloudUrl = '';
-                    var regResult= $audioEl.attr('src').match(regExp);                        
-                    if(regResult.length && regResult[1]!=''){                            
+                    var regResult= $audioEl.attr('src').match(regExp);
+                    if(regResult.length && regResult[1]!=''){
                         $postHeader.append('<div class="audio sc-player"><a href="http://api.soundcloud.com/tracks/'+regResult[1]+'"></a></div>');
                         var $audio=$postHeader.find('.audio');
                         $postHeader.addClass('has-background audio-post');
-                        $audio.scPlayer({                     
+                        $audio.scPlayer({
                             randomize: true
                         });
                         var $line = $postHeader.find('.line');
                         $line.html('<a class="audio-playback" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                         $('.audio-playback',$line).tooltip();
                     }
-                }                    
+                }
                 $this.addClass('formated');
-            });            
+            });
         }
         return $newElements;
     },
-    formatBlog:function(){        
-        if($('.post').length && ( $('body').is('.post-template') || 
+    formatBlog:function(){
+        if($('.post').length && ( $('body').is('.post-template') ||
             ( $('body').attr('data-post-mode')=='multimedia' && ( $('body').is('.home-template') || $('body').is('.archive-template') || $('body').is('.tag-template') ) ) ) ){
             $('.post').imagesLoaded(function(){
                 $('.post:not(.formated)').each(function() {
                     var $this=$(this);
                     var $postHeader=$this.find('.post-header');
                     var $postContent=$this.find('.post-content');
-                    var $line = $postHeader.find('.line');                    
+                    var $line = $postHeader.find('.line');
                     // Video Post By LINK
                     if($postContent.has('a[href*="youtube.com"]').length){
                         var $videoEl=$postContent.find('a[href*="youtube.com"]');
                         if($videoEl.length){
                             var videoUrl=$videoEl.attr('href');
                             if(videoUrl!=''){
-                                $postHeader.addClass('has-background video-post');                                
+                                $postHeader.addClass('has-background video-post');
                                 if(sfApp.isMobile()){
                                     $postHeader.addClass('mobile');
                                     var youtubeId = videoUrl.match(/[\\?&]v=([^&#]*)/)[1];
                                     if(youtubeId!=''){
-                                        $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+youtubeId+'/0.jpg'+'")');                                         
+                                        $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+youtubeId+'/0.jpg'+'")');
                                         $line.html('<a class="video-playback youtube" href="'+videoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                                         $line.addClass('has-icon');
                                         $('.video-playback',$line).tooltip();
                                         var $videoPlayback=$line.find('.video-playback');
-                                        $videoPlayback.magnificPopup({                                            
+                                        $videoPlayback.magnificPopup({
                                             type: 'iframe',
                                             mainClass: 'mfp-fade',
                                             removalDelay: 160,
@@ -408,7 +408,7 @@ var sfApp={
                                     var $video=$postHeader.find('.video');
                                     $video.data("property",videoData);
                                     $video.mb_YTPlayer();
-                                    $video.on("YTPStart",function(){                                     
+                                    $video.on("YTPStart",function(){
                                         $postHeader.addClass('playing');
                                     });
                                     $video.on("YTPPause",function(){
@@ -416,29 +416,29 @@ var sfApp={
                                     });
                                     $video.on("YTPEnd",function(){
                                         $postHeader.removeClass('playing');
-                                    });                                    
+                                    });
                                     $line.html('<a class="video-playback youtube" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                                     $line.addClass('has-icon');
                                     $('.video-playback',$line).tooltip();
                                 }
                             }
                         }
-                    } 
-                    // Video Post By iframe                   
-                    else if($postContent.has('iframe[src^="//www.youtube.com"]').length){                        
+                    }
+                    // Video Post By iframe
+                    else if($postContent.has('iframe[src^="//www.youtube.com"]').length){
                         var $videoEl=$postContent.find('iframe[src^="//www.youtube.com"]');
-                        var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;                        
+                        var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;
                         var regResult= $videoEl.attr('src').match(regExp);
                         if(regResult[3] != undefined && regResult[3]!=''){
-                            $postHeader.addClass('has-background video-post');                            
+                            $postHeader.addClass('has-background video-post');
                             $line.addClass('has-icon');
                             if(sfApp.isMobile()){
                                 $postHeader.addClass('mobile');
-                                $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg'+'")'); 
+                                $postHeader.css('background-image', 'url("'+'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg'+'")');
                                 $line.html('<a class="video-playback youtube" href="http://www.youtube.com/watch?v='+videoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                                 var $videoPlayback=$line.find('.video-playback');
                                 $('.video-playback',$line).tooltip();
-                                $videoPlayback.magnificPopup({                                            
+                                $videoPlayback.magnificPopup({
                                     type: 'iframe',
                                     mainClass: 'mfp-fade',
                                     removalDelay: 160,
@@ -447,13 +447,13 @@ var sfApp={
                                 });
                             }
                             else{
-                                var videoUrl='http://www.youtube.com/watch?v='+regResult[3];                                
+                                var videoUrl='http://www.youtube.com/watch?v='+regResult[3];
                                 var videoData="{videoURL:'"+videoUrl+"', containment:'self', showControls:true, startAt:0, mute:false, autoPlay:false, loop:false, opacity:1, quality:'highres'}";
                                 $postHeader.append('<div class="video player"></div>');
                                 var $video=$postHeader.find('.video');
                                 $video.data("property",videoData);
                                 $video.mb_YTPlayer();
-                                $video.on("YTPStart",function(){                                     
+                                $video.on("YTPStart",function(){
                                     $postHeader.addClass('playing');
                                 });
                                 $video.on("YTPPause",function(){
@@ -461,7 +461,7 @@ var sfApp={
                                 });
                                 $video.on("YTPEnd",function(){
                                     $postHeader.removeClass('playing');
-                                });                                
+                                });
                                 $line.html('<a class="video-playback youtube" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                                 $('.video-playback',$line).tooltip();
                             }
@@ -487,17 +487,17 @@ var sfApp={
                                     success: function(result) {
                                         if(result.length){
                                             $postHeader.addClass('video-post vimeo');
-                                            $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');                                                                                
+                                            $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');
                                         }
                                     }
                                 });
                             }
-                        }                        
+                        }
                         $line.html('<a class="video-playback vimeo" href="'+vimeoVideoUrl+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                        $line.addClass('has-icon');                        
+                        $line.addClass('has-icon');
                         var $videoPlayback=$line.find('.video-playback');
                         $videoPlayback.tooltip();
-                        $videoPlayback.magnificPopup({                                            
+                        $videoPlayback.magnificPopup({
                             type: 'iframe',
                             mainClass: 'mfp-fade',
                             removalDelay: 160,
@@ -524,7 +524,7 @@ var sfApp={
                         if(regResult.length && regResult[1]!=''){
                             vimeoId=regResult[1];
                         }
-                        if( !$postHeader.is('has-background') && vimeoId!='' ){                            
+                        if( !$postHeader.is('has-background') && vimeoId!='' ){
                             var vimeoUrl='http://vimeo.com/api/v2/video/'+vimeoId+'.json';
                             $.ajax({
                                 type: 'GET',
@@ -533,16 +533,16 @@ var sfApp={
                                 success: function(result) {
                                     if(result.length){
                                         $postHeader.addClass('video-post vimeo');
-                                        $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');                                                                                
+                                        $postHeader.css('background-image', 'url("'+result[0].thumbnail_large+'")');
                                     }
                                 }
-                            });                            
-                        }                        
+                            });
+                        }
                         $line.html('<a class="video-playback vimeo" href="https://vimeo.com/'+vimeoId+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                        $line.addClass('has-icon');                        
+                        $line.addClass('has-icon');
                         var $videoPlayback=$line.find('.video-playback');
                         $videoPlayback.tooltip();
-                        $videoPlayback.magnificPopup({                                            
+                        $videoPlayback.magnificPopup({
                             type: 'iframe',
                             mainClass: 'mfp-fade',
                             removalDelay: 160,
@@ -564,65 +564,65 @@ var sfApp={
                         var $audioEl=$postContent.find('a[href*="soundcloud.com"]');
                         var apiUrl='http://api.soundcloud.com/resolve.json?url='+$audioEl.attr('href')+'&client_id=425fc6ee65a14efbb9b83b1c49a87ccb';
                         $.getJSON(apiUrl, function(data) {
-                            if(data.id) {                                                                                                                                         
+                            if(data.id) {
                                 $postHeader.append('<div class="sf-audio-player"></div>');
                                 var $audioPlayer=$postHeader.find('.sf-audio-player');
-                                $audioPlayer.data('track-id',data.id);    
-                                var $section=$postHeader.closest('section');                                
+                                $audioPlayer.data('track-id',data.id);
+                                var $section=$postHeader.closest('section');
                                 $line.html('<a class="audio-playback" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                                $line.addClass('has-icon');                                
+                                $line.addClass('has-icon');
                                 var $playback = $line.find('.audio-playback');
                                 $playback.tooltip();
                                 var waveformColorOptions={
                                     defaultColor: 'rgba(255,255,255,0.4)',
                                     loadedColor: 'rgba(69,69,69,0.8)',
                                     playedColor: 'rgba(255,102,0,0.8)',
-                                };                                
+                                };
                                 if(!$postHeader.is('.has-background') && ( $section.is('.odd') || $('body').is('.post-template') ) ){
                                     waveformColorOptions={
                                         defaultColor: 'rgba(0,0,0,0.4)',
                                         loadedColor: 'rgba(69,69,69,0.8)',
                                         playedColor: 'rgba(255,102,0,0.8)',
                                     };
-                                }     
-                                SC.get("/tracks/"+data.id, function(track){                        
+                                }
+                                SC.get("/tracks/"+data.id, function(track){
                                     var waveform = new Waveform({
                                         container: $audioPlayer[0],
-                                        innerColor: waveformColorOptions.defaultColor,                            
+                                        innerColor: waveformColorOptions.defaultColor,
                                     });
                                     waveform.dataFromSoundCloudTrack(track);
                                     var streamOptions = waveform.optionsForSyncedStream(waveformColorOptions);
                                     var onfinishOptions = {
-                                        onfinish: function(){ 
-                                            $playback.removeClass('playing');   
+                                        onfinish: function(){
+                                            $playback.removeClass('playing');
                                             console.log('track finished');
                                         }
                                     }
                                     jQuery.extend( streamOptions, onfinishOptions );
                                     SC.stream(track.uri, streamOptions, function(stream){
-                                        window.scStreams.push(stream);                            
-                                    });  
-                                });           
-                                $audioPlayer.data('track-index',trackIndex);                       
+                                        window.scStreams.push(stream);
+                                    });
+                                });
+                                $audioPlayer.data('track-index',trackIndex);
                                 $playback.data('track-index',trackIndex);
                                 $audioPlayer.addClass('inited');
                                 trackIndex++;
                             }
-                        });                        
+                        });
                     }
                     // Audio Post By iframe
                     else if($postContent.has('iframe[src^="https://w.soundcloud.com"]').length){
                         var $audioEl=$postContent.find('iframe[src^="https://w.soundcloud.com"]');
                         var regExp =/soundcloud.com\/tracks\/(\d+)/;
                         var soundcloudUrl = '';
-                        var regResult= $audioEl.attr('src').match(regExp);                        
-                        if(regResult.length && regResult[1]!=''){                                                            
+                        var regResult= $audioEl.attr('src').match(regExp);
+                        if(regResult.length && regResult[1]!=''){
                             $postHeader.append('<div class="sf-audio-player"></div>');
                             var $audioPlayer=$postHeader.find('.sf-audio-player');
-                            $audioPlayer.data('track-id',regResult[1]);    
-                            var $section=$postHeader.closest('section');                            
+                            $audioPlayer.data('track-id',regResult[1]);
+                            var $section=$postHeader.closest('section');
                             $line.html('<a class="audio-playback" href="javascript:;" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
-                            $line.addClass('has-icon');                            
+                            $line.addClass('has-icon');
                             var $playback = $line.find('.audio-playback');
                             $playback.tooltip();
                             var waveformColor = $section.css("background-color");
@@ -633,35 +633,35 @@ var sfApp={
                                 else{
                                     waveformColor = 'rgba(0,0,0,0.4)';
                                 }
-                            }                            
-                            SC.get("/tracks/"+regResult[1], function(track){                        
+                            }
+                            SC.get("/tracks/"+regResult[1], function(track){
                                 var waveform = new Waveform({
                                     container: $audioPlayer[0],
-                                    innerColor: waveformColor,                            
+                                    innerColor: waveformColor,
                                 });
                                 waveform.dataFromSoundCloudTrack(track);
                                 var streamOptions = waveform.optionsForSyncedStream();
                                 var onfinishOptions = {
-                                    onfinish: function(){ 
-                                        $playback.removeClass('playing');   
+                                    onfinish: function(){
+                                        $playback.removeClass('playing');
                                         console.log('track finished');
                                     }
                                 }
                                 jQuery.extend( streamOptions, onfinishOptions );
                                 SC.stream(track.uri, streamOptions, function(stream){
-                                    window.scStreams.push(stream);                            
-                                });  
-                            });           
-                            $audioPlayer.data('track-index',trackIndex);                       
+                                    window.scStreams.push(stream);
+                                });
+                            });
+                            $audioPlayer.data('track-index',trackIndex);
                             $playback.data('track-index',trackIndex);
-                            $audioPlayer.addClass('inited'); 
-                            trackIndex++;                           
+                            $audioPlayer.addClass('inited');
+                            trackIndex++;
                         }
-                    }   
+                    }
                     else if($postHeader.is('.has-background')){
                         console.log('has-background');
                         var bg_url = $postHeader.css('background-image');
-                        bg_url = bg_url.replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, ''); 
+                        bg_url = bg_url.replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, '');
                         $line.html('<a class="image-popup" href="'+bg_url+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                         $line.addClass('has-icon');
                         $line.find('.image-popup').tooltip();
@@ -674,7 +674,7 @@ var sfApp={
                     else if($postContent.has('img[alt*="image-post"]').length){
                         var $backgroundEl=$postContent.find('img[alt*="image-post"]');
                         $postHeader.addClass('has-background '+$backgroundEl.attr('alt'));
-                        $postHeader.css('background-image', 'url("'+$backgroundEl.attr('src')+'")');                        
+                        $postHeader.css('background-image', 'url("'+$backgroundEl.attr('src')+'")');
                         $line.html('<a class="image-popup" href="'+$backgroundEl.attr('src')+'" data-toggle="tooltip" data-placement="right" title="Try me!"></a>');
                         $line.addClass('has-icon');
                         $line.find('.image-popup').tooltip();
@@ -682,65 +682,65 @@ var sfApp={
                             type: 'image',
                             tLoading: '',
                         });
-                    }                 
+                    }
                     $this.addClass('formated');
                 });
             });
-        }        
+        }
     },
     audioSeekingHandler:function(){
-        jQuery(document).on('click','.sf-audio-player', function(event) {            
+        jQuery(document).on('click','.sf-audio-player', function(event) {
             var $this=jQuery(this);
-            var $postHeader=$this.closest('.post-header');  
-            var $playback = jQuery('.header-wrap .line .audio-playback', $postHeader);            
+            var $postHeader=$this.closest('.post-header');
+            var $playback = jQuery('.header-wrap .line .audio-playback', $postHeader);
             if($playback.is('.playing')){
                 sfApp.audioScrub( $this, event.pageX );
             }
             else{
                 console.log('audio not playing');
-            }            
+            }
             return false;
         });
     },
     audioScrub:function($element,xPos){
-        var stream = window.scStreams[$element.data('track-index')];        
+        var stream = window.scStreams[$element.data('track-index')];
         var needSeek = Math.floor( Math.min( ( stream.bytesLoaded/stream.bytesTotal ), ( xPos/$element.width() ) ) * stream.durationEstimate );
         console.log('seek to:'+needSeek );
         stream.setPosition(needSeek);
     },
     audioPlayback:function(){
-        jQuery(document).on('click','.audio-playback', function(event) {            
-            var $this=jQuery(this);                                        
-            var $postHeader=$this.closest('.post-header');                        
-            if(!$this.is('.playing')){                
+        jQuery(document).on('click','.audio-playback', function(event) {
+            var $this=jQuery(this);
+            var $postHeader=$this.closest('.post-header');
+            if(!$this.is('.playing')){
                 if(typeof window.scStreams != 'undefined' ){
-                    jQuery.each(window.scStreams, function( index, stream ) {                    
-                        if( index != $this.data('track-index') ){                        
-                            window.scStreams[index].pause();                        
-                        }                             
+                    jQuery.each(window.scStreams, function( index, stream ) {
+                        if( index != $this.data('track-index') ){
+                            window.scStreams[index].pause();
+                        }
                     });
-                }                
+                }
                 jQuery('.audio-playback.playing').removeClass('playing');
-                $this.addClass('playing');                                
+                $this.addClass('playing');
             }
             else{
-                $this.removeClass('playing');                
+                $this.removeClass('playing');
             }
-            window.scStreams[$this.data('track-index')].togglePause();  
+            window.scStreams[$this.data('track-index')].togglePause();
             return false;
         });
-    },    
+    },
     videoPlayback:function(){
-        $(document).on('click','.video-playback:not(.vimeo)', function(event) {            
+        $(document).on('click','.video-playback:not(.vimeo)', function(event) {
             var $this=$(this);
             var $postHeader=$this.closest('.post-header');
             var $video=$postHeader.find('.video');
             if(!$this.is('.playing')){
-                $('.video-playback.playing').removeClass('playing');       
+                $('.video-playback.playing').removeClass('playing');
                 $this.addClass('playing');
                 $('.post-header.video-post.playing .mb_YTVPlayer').each(function(){
                     $(this).pauseYTP();
-                });                
+                });
                 $video.playYTP();
             }
             else{
@@ -859,25 +859,25 @@ var sfApp={
         }
     },
     getMaxPagination:function(){
-        if($('.total-page').length){            
+        if($('.total-page').length){
             return parseInt($('.total-page').html());
         }
     },
     infiniteScrollHandler:function(){
-        if($('.post-list').length && $('body').data('infinite-scroll')==true){            
+        if($('.post-list').length && $('body').data('infinite-scroll')==true){
             var $container = $('.post-list');
             $container.infinitescroll({
                     navSelector     : '.pagination',    // selector for the paged navigation
                     nextSelector    : '.pagination a.older-posts',  // selector for the NEXT link (to page 2)
                     itemSelector    : '.post',     // selector for all items you'll retrieve
-                    maxPage         : sfApp.getMaxPagination(),                                        
+                    maxPage         : sfApp.getMaxPagination(),
                     loading: {
                         finishedMsg: 'No more post to load.',
                         img: sfThemeOptions.global.rootUrl+'/assets/img/loading.gif'
                     }
-                },                
-                function( newElements ) {                    
-                    var $newElements= sfApp.formatBlogAjax($(newElements));                    
+                },
+                function( newElements ) {
+                    var $newElements= sfApp.formatBlogAjax($(newElements));
                     $container.append($newElements);
                 }
             );
@@ -1009,9 +1009,9 @@ var sfApp={
         }
     },
     fitVids:function(){
-        $('.post-content').find('iframe[src^="//www.youtube.com"]').wrap( '<div class="video-wrap"></div>' );                   
-        $('.post-content').find('iframe[src^="//player.vimeo.com"]').wrap( '<div class="video-wrap"></div>' );        
-        if($('.post-content').find('>:first-child').is('.video-wrap')){               
+        $('.post-content').find('iframe[src^="//www.youtube.com"]').wrap( '<div class="video-wrap"></div>' );
+        $('.post-content').find('iframe[src^="//player.vimeo.com"]').wrap( '<div class="video-wrap"></div>' );
+        if($('.post-content').find('>:first-child').is('.video-wrap')){
             $('.post-content').find('>:first-child').removeClass('video-wrap');
         }
         $('.post-content .video-wrap').fitVids();
@@ -1023,21 +1023,21 @@ var sfApp={
             if($(window).width()>979){
                 $shareBox.appendTo("body");
             }
-        }        
+        }
         var $timeToReadNofify=$('#time-to-read-nofify');
         var $postContent=$(".post-content");
         if(!$postContent.data('time-to-read')){
             var time=Math.round($postContent.text().split(' ').length/200);
-            $postContent.data('time-to-read',time);            
-        }        
+            $postContent.data('time-to-read',time);
+        }
         var totalTime=$postContent.data('time-to-read');
-        var winHeight=$(window).height();        
+        var winHeight=$(window).height();
         var scrollbarHeight = winHeight / $(document).height() * winHeight;
         var progress = $(window).scrollTop() / ($(document).height() - winHeight);
         var distance = progress * (winHeight - scrollbarHeight) + scrollbarHeight / 2 - $timeToReadNofify.height() / 2;
-        var remainTime = Math.ceil(totalTime - (totalTime * progress));       
-        var notifyStr='';        
-        if($(window).scrollTop()<$('.post-footer').offset().top){
+        var remainTime = Math.ceil(totalTime - (totalTime * progress));
+        var notifyStr='';
+        if($(window).scrollTop()<$('.next-post').offset().top){
             if(remainTime > 1) {
                 notifyStr = remainTime + ' minutes left';
             }
@@ -1047,13 +1047,12 @@ var sfApp={
             else if (remainTime <= 1) {
                 notifyStr = 'Less than a minute';
             }
-            $timeToReadNofify.css('top', distance).text(notifyStr).fadeIn(100);            
+            $timeToReadNofify.css('top', distance).text(notifyStr).fadeIn(100);
             if($(window).width()>979){
-                $shareBox.fadeOut(100);    
-            }            
-        }
-        else{
-            $timeToReadNofify.fadeOut(100);            
+                $shareBox.fadeOut(100);
+            }
+        } else{
+            $timeToReadNofify.fadeOut(100);
             if($(window).width()>979){
                 $shareBox.css('top', distance-75).fadeIn(100);
             }
@@ -1061,13 +1060,13 @@ var sfApp={
         if (sfApp.scrollTimer !== null) {
             clearTimeout(sfApp.scrollTimer);
         }
-        sfApp.scrollTimer = setTimeout(function() { $timeToReadNofify.fadeOut(); }, 1000);        
-    },    
+        sfApp.scrollTimer = setTimeout(function() { $timeToReadNofify.fadeOut(); }, 1000);
+    },
     mailchimpHandler:function(){
         if($('#mc-form').length){
             $("#mc-form input").not("[type=submit]").jqBootstrapValidation({
                 submitSuccess: function ($form, event) {
-                    event.preventDefault();                    
+                    event.preventDefault();
                     var url=$form.attr('action');
                     if(url=='' || url=='YOUR_WEB_FORM_URL_HERE')
                     {
@@ -1102,7 +1101,7 @@ var sfApp={
                 }
             });
         }
-    },    
+    },
     scrollEvent:function(){
         $(window).scroll(function() {
             "use strict";
@@ -1126,17 +1125,17 @@ var sfApp={
             }
             if($('body').is('.post-template') && !$('body').is('.page') && $('.post-content').length){
                 sfApp.timeToRead();
-            }            
+            }
         });
     },
     menuEvent:function(){
         if($('.mini-nav-button').length){
             $('.mini-nav-button').click(function(){
                 var $menu=$('.full-screen-nav');
-                if(!$menu.length){                    
+                if(!$menu.length){
                     $menu=$('.mini-nav');
                     if(!$menu.length){
-                        $menu=$('.standard-nav');                        
+                        $menu=$('.standard-nav');
                     }
                 }
                 if(!$(this).is('.active')){
@@ -1154,7 +1153,7 @@ var sfApp={
         if($('.search-button').length){
             $('.search-button').click(function(){
                 $('#search-keyword').val('');
-                var $search=$('.search-container');                
+                var $search=$('.search-container');
                 if(!$(this).is('.active')){
                     $('body').addClass('open-search');
                     $search.addClass('open');
@@ -1165,15 +1164,15 @@ var sfApp={
                     $('body').removeClass('open-search');
                     $search.removeClass('open');
                     $(this).removeClass('active');
-                    $('.search-result').removeClass('searching');                    
+                    $('.search-result').removeClass('searching');
                 }
             });
         }
-    },    
+    },
     gmapInitialize:function(){
         if(jQuery('.gmap').length){
             var your_latitude=jQuery('.gmap').data('latitude');
-            var your_longitude=jQuery('.gmap').data('longitude');            
+            var your_longitude=jQuery('.gmap').data('longitude');
             var mainColor=sfApp.hexColor(jQuery('.gmap-container').css('backgroundColor'));
             var myLatlng = new google.maps.LatLng(your_latitude,your_longitude);
             var mapOptions = {
@@ -1195,7 +1194,7 @@ var sfApp={
                             null, // origin
                             new google.maps.Point( 32, 32 ), // anchor (move to center of marker)
                             new google.maps.Size( 64, 64 ) // scaled size (required for Retina display icon)
-                        );            
+                        );
             var marker = new google.maps.Marker({
                 position: myLatlng,
                 flat: true,
@@ -1205,7 +1204,7 @@ var sfApp={
                 title: 'i-am-here',
                 visible: true
             });
-        }        
+        }
     },
     hexColor:function(colorval) {
         var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -1226,9 +1225,9 @@ var sfApp={
         return keyValue ? keyValue[2] : null;
     },
     searchHandler:function(){
-        $('#search-keyword').keypress(function(event) {            
+        $('#search-keyword').keypress(function(event) {
             if (event.which == 13) {
-                if($('#search-keyword').val()!='' && $('#search-keyword').val().length>=3){                             
+                if($('#search-keyword').val()!='' && $('#search-keyword').val().length>=3){
                     $('.search-result').html('<li class="loading-text">Searching ...</li>');
                     $('.search-result').addClass('searching');
                     sfApp.search($('#search-keyword').val());
@@ -1243,36 +1242,36 @@ var sfApp={
     search:function(keyword){
         var hasResult=false;
         var page = 0;
-        var maxPage=0;        
-        if(keyword != ''){                  
+        var maxPage=0;
+        if(keyword != ''){
             $.ajax({
                 type: 'GET',
                 url: sfThemeOptions.global.rootUrl,
                 success: function(response){
                     var $response=$(response);
-                    var postPerPage=$response.find('section.post').length; 
+                    var postPerPage=$response.find('section.post').length;
                     var totalPage=parseInt($response.find('.total-page').html());
-                    maxPage=Math.floor((postPerPage*totalPage)/15)+1;                                       
+                    maxPage=Math.floor((postPerPage*totalPage)/15)+1;
                     var timeout = setInterval(function(){
-                        page=page+1;                
+                        page=page+1;
                         var ajaxUrl=sfThemeOptions.global.rootUrl+'/rss/'+page+'/';
                         if(page==1){
                             ajaxUrl=sfThemeOptions.global.rootUrl+'/rss/';
-                        } 
+                        }
                         if(page>maxPage){
                             clearInterval(timeout);
                             if(!hasResult){
                                 $('.search-result .loading-text').html('Apologies, but no results were found. Please try another keyword!');
                             }
                         }
-                        else{                                                                          
+                        else{
                             $.ajax({
                                 type: 'GET',
                                 url: ajaxUrl,
                                 dataType: "xml",
                                 success: function(xml) {
-                                    if($(xml).length){                                                           
-                                        $('item', xml).each( function() {                                                                          
+                                    if($(xml).length){
+                                        $('item', xml).each( function() {
                                             if($(this).find('title').eq(0).text().toLowerCase().indexOf(keyword.toLowerCase())>=0 ||
                                                     $(this).find('description').eq(0).text().toLowerCase().indexOf(keyword.toLowerCase())>=0){
                                                 hasResult=true;
@@ -1280,15 +1279,15 @@ var sfApp={
                                                     $('.search-result .loading-text').remove();
                                                 }
                                                 $('.search-result').append('<li><a href="'+$(this).find('link').eq(0).text()+'">'+$(this).find('title').eq(0).text()+'</a></li>');
-                                            }                    
+                                            }
                                         });
                                     }
                                 }
-                            });   
-                        }             
-                    }, 1000); 
+                            });
+                        }
+                    }, 1000);
                 }
-            });                                           
+            });
         }
     },
     isMobile:function(){
@@ -1298,39 +1297,39 @@ var sfApp={
         else
             return false;
     },
-    refreshIntro:function(){        
+    refreshIntro:function(){
         var wHeight = $(window).height();
         if($('#site-intro').length){
             if($('#site-intro').is('.personal')){
                 if($('.post-list .post').length){
-                    $('#site-intro .author-avatar').html('<img src="'+$('.post-list .post').first().data('author-img')+'" class="img-responsive"/>');    
-                    $('#site-intro .author-name').html($('.post-list .post').first().data('author-name'));    
-                    $('#site-intro .author-bio').html($('.post-list .post').first().data('author-bio'));    
-                }                
-            }            
+                    $('#site-intro .author-avatar').html('<img src="'+$('.post-list .post').first().data('author-img')+'" class="img-responsive"/>');
+                    $('#site-intro .author-name').html($('.post-list .post').first().data('author-name'));
+                    $('#site-intro .author-bio').html($('.post-list .post').first().data('author-bio'));
+                }
+            }
             if(!$('#site-intro').is('.left-style') && ! $('#site-intro').is('.right-style')){
                 var introTextMargin=Math.floor($('.intro-text').height()/2);
-                $('.intro-wrap').css('margin-top', '-'+introTextMargin+'px');    
-            }            
+                $('.intro-wrap').css('margin-top', '-'+introTextMargin+'px');
+            }
             $('.intro-wrap').css('opacity', '1');
             if($('#site-intro .more-detail').length){
                 $('#site-intro .more-detail').css('opacity', '1');
             }
         }
         if($('body').is('.post-template') && $('.post-header').length){
-            var percent=70;            
+            var percent=70;
             if(wHeight<=600){
                 percent=100;
             }
             $('.post-header').css('height', Math.floor(wHeight*percent/100)+'px');
             $('.post-header .header-wrap').css('opacity', '1');
-        }        
-    },    
-    misc:function(){                   
+        }
+    },
+    misc:function(){
         $('.more-detail .scrollDown').click(function(){
             $("html, body").animate({scrollTop: $('#start').offset().top-$('.header').outerHeight()+20}, 500);
             return false;
-        });  
+        });
         $('.more-detail .start').click(function(){
             $("html, body").animate({scrollTop: $('#start').offset().top-$('.header').outerHeight()+20}, 500);
             return false;
@@ -1338,7 +1337,7 @@ var sfApp={
         $('.action-list .go-to-blog').click(function(){
             $("html, body").animate({scrollTop: $('#start').offset().top-$('.header').outerHeight()+20}, 500);
             return false;
-        });           
+        });
         if($('.totop-btn').length){
             $('.totop-btn').click(function () {
                 $("html, body").animate({scrollTop: 0}, 800);
@@ -1350,26 +1349,26 @@ var sfApp={
                 $('html, body').stop().animate({scrollTop: $('.comment-wrap').offset().top}, 500);
             });
         }
-        if($('body').is('.post-template') || $('body').is('.page-template')){                      
+        if($('body').is('.post-template') || $('body').is('.page-template')){
             var $imgList=$('.post-content').find('img');
             if($imgList.length){
                 $imgList.each(function(index, el) {
-                    var alt=$(this).attr('alt');                         
-                    $(this).addClass('img-responsive'); 
-                    $(this).addClass(alt);   
-                    if(alt.indexOf('no-responsive')>=0){                        
+                    var alt=$(this).attr('alt');
+                    $(this).addClass('img-responsive');
+                    $(this).addClass(alt);
+                    if(alt.indexOf('no-responsive')>=0){
                         $(this).removeClass('img-responsive');
-                    }                    
+                    }
                     if(alt.indexOf('fullscreen-img')>=0){
                         $(this).wrap('<span class="fullscreen-img-wrap"></span>');
                         var $fullscreenImgWrap=$(this).closest('.fullscreen-img-wrap');
                         $(this).on('load', function(){
-                            $fullscreenImgWrap.css({'height': $(this).outerHeight()});    
-                        });                                                    
-                    }                    
+                            $fullscreenImgWrap.css({'height': $(this).outerHeight()});
+                        });
+                    }
                     else if( alt.indexOf('popup-preview')>=0 || $('body').data('auto-image-popup-preview') ){
                         $(this).wrap( '<a class="popup-preview" href="' + $(this).attr('src') + '"></a>' );
-                        var $wrap = $(this).parent();                        
+                        var $wrap = $(this).parent();
                         if( alt.indexOf( 'alignright' ) >=0 ) {
                             $wrap.addClass( 'alignright' );
                         }
@@ -1399,24 +1398,24 @@ var sfApp={
                     }
                 });
             }
-        }                     
+        }
         if(jQuery('.gmap').length){
             sfApp.gmapInitialize();
             google.maps.event.addDomListener(window, 'load', sfApp.gmapInitialize);
             google.maps.event.addDomListener(window, 'resize', sfApp.gmapInitialize);
         }
         var $menu=$('.full-screen-nav');
-        if(!$menu.length){                    
+        if(!$menu.length){
             $menu=$('.mini-nav');
             if(!$menu.length){
-                $menu=$('.standard-nav');                        
+                $menu=$('.standard-nav');
             }
         }
         var currentUrl=window.location.href;
         var $currentMenu=$menu.find('a[href="'+currentUrl+'"]');
-        if($currentMenu.length){            
+        if($currentMenu.length){
             $('li.active',$menu).removeClass('active');
-            $currentMenu.parent().addClass('active');            
+            $currentMenu.parent().addClass('active');
         }
         $('input, textarea').placeholder();
     },
@@ -1426,38 +1425,38 @@ var sfApp={
         });
         if(typeof window.scStreams == 'undefined' ){
             window.scStreams = [];
-        }   
+        }
         sfApp.refreshIntro();
         sfApp.formatBlog();
         sfApp.nextPost();
-        sfApp.infiniteScrollHandler();        
+        sfApp.infiniteScrollHandler();
         sfApp.fitVids();
-        sfApp.audioPlayback();      
-        sfApp.videoPlayback();      
+        sfApp.audioPlayback();
+        sfApp.videoPlayback();
         sfApp.scrollEvent();
         sfApp.menuEvent();
         sfApp.searchHandler();
-        sfApp.mailchimpHandler();        
-        sfApp.misc();        
+        sfApp.mailchimpHandler();
+        sfApp.misc();
     }
 };
 /*================================================================*/
 /*  2. Initialing
 /*================================================================*/
 $(document).ready(function() {
-    "use strict";  
+    "use strict";
     sfApp.init();
 });
 $(window).resize(function () {
-    "use strict";    
+    "use strict";
     if(this.resizeTO){
         clearTimeout(this.resizeTO);
-    }  
+    }
     this.resizeTO = setTimeout(function() {
         $(this).trigger('resizeEnd');
     }, 500);
 });
 $(window).bind('resizeEnd', function() {
-    "use strict";    
+    "use strict";
     sfApp.refreshIntro();
 });

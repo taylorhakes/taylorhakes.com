@@ -72,3 +72,6 @@ theme: goblin
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+
+feed:
+  type: rss2

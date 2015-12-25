@@ -4,7 +4,7 @@ each p, i in page.posts.data
     div(class=('post-header' +  (p.image ? 'has-background' : '')) style=(p.image ? "background-image: url({{image}})" : ''))
       .header-wrap
         h2.post-title(itemprop="name")
-          a(itemprop="url" href=p.url)= p.title
+          a(itemprop="url" href=url_for(p.path))= p.title
         .post-meta #{p.date.fromNow()}
         .line
         if p.tags
