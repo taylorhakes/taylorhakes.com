@@ -3,7 +3,8 @@ main.body-content(role="main")
     .post-header
       .header-wrap
         h2.post-title
-          a href="{{url}}">{{{title}}}</a></h2>
+          a(href=url_for(page.path))
+            | !{page.title}
         .post-meta #{config.author} / #{page.date}
           .line
             if page.tags
@@ -12,9 +13,10 @@ main.body-content(role="main")
                 if page.featured
                   span Featured
                 span on #{tags.join(', ')}
-              else
+            else
               if page.featured
                 .post-meta
                   i.fa.fa-star
                   span Featured
-    .post-content post.content
+    .post-content
+      | !{page.content}

@@ -2,11 +2,11 @@ title: Testing Promise Code
 permalink: testing-promise-code
 id: 5
 date: 2015-08-19
-tags:
 ---
 
-![thumb image-post mask](/content/images/2015/08/promise.png)
-If you have ever tried to write tests for Promise based code, you may have realized it's not exactly straight forward. It has definitely become easier over the last couple years. Newer versions of mocha let you return a Promise from a test and it automatically waits for the result. This is what code looks like normally.
+If you have ever tried to write tests for Promise based code, you may have realized it's not exactly straight forward.
+<!-- more -->
+It has definitely become easier over the last couple years. Newer versions of mocha let you return a Promise from a test and it automatically waits for the result. This is what code looks like normally.
 
 
 <pre><code class="javascript">// Some Promise code

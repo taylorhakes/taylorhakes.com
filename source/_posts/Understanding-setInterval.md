@@ -2,11 +2,11 @@ title: Understanding setInterval
 permalink: understanding-setinterval
 id: 2
 date: 2013-11-10
-tags:
 ---
 
-![thumb image-post mask](/content/images/2015/08/timer.jpg)
-If you write a lot of Javascript, inevitably you find the need to use the functions setTimeout or setInterval. setTimeout executes a function after a given number of milliseconds and setInterval executes a function forever at a given interval. You can read more about them here (<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout">setTimeout</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setInterval">setInterval</a>).
+If you write a lot of Javascript, inevitably you find the need to use the functions setTimeout or setInterval.
+<!-- more -->
+setTimeout executes a function after a given number of milliseconds and setInterval executes a function forever at a given interval. You can read more about them here (<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout">setTimeout</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setInterval">setInterval</a>).
 
 Most developers use them, but don't really understand what is going on behind the scenes. An interesting explanation came from <a href="http://ejohn.org/blog/how-javascript-timers-work/">John Resig's blog</a>. I originally took the information as fact without doing my own investigation. About a year ago AppNexus decided to give an interview question on setInterval. My colleague, Sam Mati, and I decided to do some tests on setInterval. Interestingly, we found John's model of setInterval to be wrong.
 

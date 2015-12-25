@@ -5,7 +5,8 @@
 # Site
 title: Taylor Hakes
 subtitle: New York Web Developer, Golfer, Tech Enthusiast
-description:
+search_title: Taylor Hakes - New York Web Developer, Golfer, Tech Enthusiast
+description: Taylor Hakes is a web developer living in New York. Taylor currently works at IEX developing with Javascript, Node, Python and HTML.
 author: Taylor Hakes
 language: EN-US
 timezone: EST
@@ -16,7 +17,7 @@ author_img: /img/author.jpg
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://taylorhakes.com
 root: /
-permalink: :year/:month/:day/:title/
+permalink: posts/:title/
 permalink_defaults:
 
 
@@ -71,7 +72,8 @@ theme: goblin
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:taylorhakes/taylorhakes.github.io.git
 
 feed:
   type: rss2

@@ -1438,6 +1438,8 @@ var sfApp={
         sfApp.searchHandler();
         sfApp.mailchimpHandler();
         sfApp.misc();
+
+        hljs.initHighlightingOnLoad();
     }
 };
 /*================================================================*/

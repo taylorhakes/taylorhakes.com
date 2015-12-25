@@ -2,11 +2,11 @@ title: Creating a clock with setInterval
 permalink: creating-a-clock-with-setinterval
 id: 3
 date: 2015-08-03
-tags:
 ---
 
-![thumb image-post mask](/content/images/2015/08/time-1.jpg)
-If you have ever created a Javascript clock, you may have noticed some issues with using setInterval to update the time. The clock ticks at irregular intervals and can get farther and farther from the correct time.
+If you have ever created a Javascript clock, you may have noticed some issues with using setInterval to update the time.
+<!-- more -->
+The clock ticks at irregular intervals and can get farther and farther from the correct time.
 
 Below is a possible first attempt:
 

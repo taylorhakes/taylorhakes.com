@@ -7,7 +7,7 @@ main.body-content(role="main")
         .post-meta By #{config.author} /
           time(datetime=page.date itemprop="datePublished")= page.date.fromNow()
           .line
-          if page.tags
+          if page.tags.length
             .post-meta
               i.fa.fa-tags
               span
@@ -28,12 +28,13 @@ main.body-content(role="main")
           h3.box-title Thanks for reading!
             span.box-sub-title Don't forget to spread the word:
             include partials/social-icons
-  section.next-post(data-current-url="")
-    .next-post-wrap
-      .next-label Next Story
-      h2.post-title
-        a(href=url_for(page.next.path))= page.next.title
-      .post-meta= page.next.date.fromNow()
-      .next-arrow
-        a(href=url_for(page.next.path))
-          i.fa.fa-angle-double-down
+  if page.next
+    section.next-post(data-current-url="")
+      .next-post-wrap
+        .next-label Next Story
+        h2.post-title
+          a(href=url_for(page.next.path))= page.next.title
+        .post-meta= page.next.date.fromNow()
+        .next-arrow
+          a(href=url_for(page.next.path))
+            i.fa.fa-angle-double-down

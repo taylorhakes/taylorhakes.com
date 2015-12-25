@@ -196,7 +196,7 @@ ul.social li {
 	-moz-border-radius: 50%;
 	border-radius: 50%;
 	border: 2px solid #fff;
-	margin:0 1px;
+	margin:0 3px;
 	text-align: center;
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -3897,3 +3897,6 @@ pre code{
 		font-size: 18px;
 	}
 }
+
+pre{border:none;padding:0;background:none;}
+pre code.hljs{padding:1em;}
