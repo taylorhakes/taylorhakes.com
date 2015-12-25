@@ -5,6 +5,10 @@
 /*================================================================*/
 /*  1. Common function
 /*================================================================*/
+if (window.location.host == 'taylorhakes.com' && window.location.protocol != "https:") {
+    window.location.protocol = "https:";
+}
+
 paceOptions = {
     elements: true
 };
@@ -904,7 +908,7 @@ var sfApp={
             else if (remainTime <= 1) {
                 notifyStr = 'Less than a minute';
             }
-            $timeToReadNofify.css('top', distance).text(notifyStr).fadeIn(100);
+            $timeToReadNofify.text(notifyStr).fadeIn(100);
             if($(window).width()>979){
                 $shareBox.fadeOut(100);
             }

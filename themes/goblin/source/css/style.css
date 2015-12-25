@@ -2430,30 +2430,16 @@ TIME TO READ & SHARE BOX
 #time-to-read-nofify{
 	display:none;
 	position:fixed;
-	top:0;
-	right:20px;
+	bottom:0;
+	left:0;
 	z-index:500;
 	background-color:#444;
 	color:#fff;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
 	font-size:14px;
 	text-transform:uppercase;
 	letter-spacing:1px;
 	padding:3px 8px;
 	-webkit-transform: translateZ(0);
-}
-#time-to-read-nofify:after{
-	content:" ";
-	position:absolute;
-	top:50%;
-	right:-8px;
-	height:0;
-	width:0;
-	margin-top:-4px;
-	border:4px solid transparent;
-	border-left-color:#444;
 }
 .share-box{
 	position: fixed;
