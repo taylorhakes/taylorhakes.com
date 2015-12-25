@@ -14,149 +14,6 @@ var sfApp={
     formatDate:function(date){
         return moment(date).fromNow();
     },
-    nextPost:function(){
-        if($('.next-post').length){
-            var page = 0;
-            var isNext=false;
-            var result = new Array();
-            var $nextPostContainer = $('.next-post');
-            var currentUrl = $nextPostContainer.data('current-url');
-            if(currentUrl != ''){
-                var timeout = setInterval(function(){
-                    page=page+1;
-                    var ajaxUrl=sfThemeOptions.global.rootUrl+'/rss/'+page+'/';
-                    if(page==1){
-                        ajaxUrl=sfThemeOptions.global.rootUrl+'/rss/';
-                    }
-                    $.ajax({
-                        type: 'GET',
-                        url: ajaxUrl,
-                        dataType: "xml",
-                        success: function(xml) {
-                            if($(xml).length){
-                                $('item', xml).each( function() {
-                                    var itemUrl=$(this).find('link').eq(0).text();
-                                    if(isNext){
-                                        result['link'] = itemUrl;
-                                        result['title'] = $(this).find('title').eq(0).text();
-                                        result['pubDate'] = sfApp.formatDate( new Date($(this).find('pubDate').eq(0).text()));
-                                        var $desc = $($(this).find('description').eq(0).text());
-                                        if($desc.first().is('iframe')){
-                                            var $iframeEl=$desc.first();
-                                            var frameSrc=$desc.first().attr('src');
-                                            if(frameSrc.indexOf('youtube.com')>=0){
-                                                var regExp=/youtube(-nocookie)?\.com\/(embed|v)\/([\w_-]+)/;
-                                                var youtubeId ='';
-                                                var regResult= frameSrc.match(regExp);
-                                                if(regResult[3] != 'undefined' && regResult[3]!=''){
-                                                    result['background'] = 'http://i3.ytimg.com/vi/'+regResult[3]+'/0.jpg';
-                                                    result['cssClass'] = 'video-post';
-                                                }
-                                            }
-                                            else if(frameSrc.indexOf('vimeo.com')>=0){
-                                                var regExp = /video\/(\d+)/;
-                                                var regResult= frameSrc.match(regExp);
-                                                if(regResult[1] != 'undefined' && regResult[1] != ''){
-                                                    var vimeoUrl='http://vimeo.com/api/v2/video/'+regResult[1]+'.json';
-                                                    console.log(vimeoUrl);
-                                                    $.ajax({
-                                                        type: 'GET',
-                                                        url: vimeoUrl,
-                                                        dataType: "json",
-                                                        success: function(vimeoResult) {
-                                                            if(vimeoResult.length){
-                                                                $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');
-                                                                $nextPostContainer.addClass('video-post');
-                                                                var htmlStr='<div class="next-post-wrap">\
-                                                                                <div class="next-label">Next Story</div>\
-                                                                                <h2 class="post-title"><a href="'+result['link']+'">'+result['title']+'</a></h2>\
-                                                                                <div class="post-meta">'+result['pubDate']+'</div>\
-                                                                                <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
-                                                                            </div>';
-                                                                $nextPostContainer.html(htmlStr);
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                        else if($desc.has('img[alt*="image-post"]').length){
-                                            var $backgroundEl = $desc.find('img[alt*="image-post"]');
-                                            if($backgroundEl.length){
-                                                result['cssClass'] = $backgroundEl.attr('alt');
-                                                result['background'] = $backgroundEl.attr('src');
-                                            }
-                                        }
-                                        else if($desc.has('a[href*="youtube.com"]').length){
-                                            var $videoEl=$desc.find('a[href*="youtube.com"]');
-                                            if($videoEl.length){
-                                                var videoUrl=$videoEl.attr('href');
-                                                if(videoUrl!=''){
-                                                    var youtubeId = videoUrl.match(/[\\?&]v=([^&#]*)/)[1];
-                                                    if(youtubeId!=''){
-                                                        result['background'] = 'http://i3.ytimg.com/vi/'+youtubeId+'/0.jpg';
-                                                        result['cssClass'] = 'video-post';
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else if($desc.has('a[href*="vimeo.com"]').length){
-                                            var $vimeoVideoEl=$desc.find('a[href*="vimeo.com"]');
-                                            var vimeoVideoUrl=$vimeoVideoEl.attr('href');
-                                            var regExp = /vimeo.com\/(\d+)/;
-                                            var vimeoId ='';
-                                            var regResult= vimeoVideoUrl.match(regExp);
-                                            if(regResult[1] != 'undefined' && regResult[1] != '') {
-                                                var vimeoUrl='http://vimeo.com/api/v2/video/'+regResult[1]+'.json';
-                                                $.ajax({
-                                                    type: 'GET',
-                                                    url: vimeoUrl,
-                                                    dataType: "json",
-                                                    success: function(vimeoResult) {
-                                                        if(vimeoResult.length && vimeoResult[0].thumbnail_large != ''){
-                                                            $nextPostContainer.css('background-image', 'url("'+vimeoResult[0].thumbnail_large+'")');
-                                                            $nextPostContainer.addClass('video-post');
-                                                            var htmlStr='<div class="next-post-wrap">\
-                                                                            <div class="next-label">Next Story</div>\
-                                                                            <h2 class="post-title"><a href="'+result['link']+'">'+result['title']+'</a></h2>\
-                                                                            <div class="post-meta">'+result['pubDate']+'</div>\
-                                                                            <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
-                                                                        </div>';
-                                                            $nextPostContainer.html(htmlStr);
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        }
-                                        if(result['link'] != undefined){
-                                            if(result['background'] != undefined && result['background'] != ''){
-                                                $nextPostContainer.css('background-image', 'url("'+result['background']+'")');
-                                            }
-                                            if(result['cssClass'] != undefined && result['cssClass'] != ''){
-                                                $nextPostContainer.addClass(result['cssClass']);
-                                            }
-                                            var htmlStr='<div class="next-post-wrap">\
-                                                            <div class="next-label">Next Story</div>\
-                                                            <h2 class="post-title"><a href="'+result['link']+'">'+result['title']+'</a></h2>\
-                                                            <div class="post-meta">'+result['pubDate']+'</div>\
-                                                            <div class="next-arrow"><a href="'+result['link']+'"><i class="fa fa-angle-double-down"></i></a></div>\
-                                                        </div>';
-                                            $nextPostContainer.html(htmlStr);
-                                        }
-                                        clearInterval(timeout);
-                                        return false;
-                                    }
-                                    else if(currentUrl == itemUrl){
-                                        isNext = true;
-                                    }
-                                });
-                            }
-                        }
-                    });
-                }, 2000);
-            }
-        }
-    },
     formatBlogAjax:function($newElements){
         if($newElements.length && ( $('body').is('.post-template') ||
             ( $('body').attr('data-post-mode')=='multimedia' && ( $('body').is('.home-template') || $('body').is('.archive-template') || $('body').is('.tag-template') ) ) ) ){
@@ -1037,7 +894,7 @@ var sfApp={
         var distance = progress * (winHeight - scrollbarHeight) + scrollbarHeight / 2 - $timeToReadNofify.height() / 2;
         var remainTime = Math.ceil(totalTime - (totalTime * progress));
         var notifyStr='';
-        if($(window).scrollTop()<$('.next-post').offset().top){
+        if($(window).scrollTop()<$('.article-end').offset().top){
             if(remainTime > 1) {
                 notifyStr = remainTime + ' minutes left';
             }
@@ -1428,7 +1285,6 @@ var sfApp={
         }
         sfApp.refreshIntro();
         sfApp.formatBlog();
-        sfApp.nextPost();
         sfApp.infiniteScrollHandler();
         sfApp.fitVids();
         sfApp.audioPlayback();
