@@ -1,11 +1,11 @@
 .post-list
 each p, i in page.posts.data
   section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('post ' + (i % 2 === 0 ? 'even' : 'odd')) id=(i === 0 ? "start" : '') data-author-name=config.author data-author-img="" data-author-bio="Hello world")
-    div(class=('post-header' +  (p.image ? 'has-background' : '')) style=(p.image ? "background-image: url({{image}})" : ''))
+    div(class=('post-header' +  (p.image ? 'has-background' : '')) style=(p.background ? 'background:url(' + p.background + ');' : ''))
       .header-wrap
         h2.post-title(itemprop="name")
           a(itemprop="url" href=url_for(p.path))= p.title
-        .post-meta #{p.date.fromNow()}
+        .post-meta #{p.date.format('MMM D, YYYY')}
         .line
         if p.tags
           .post-meta

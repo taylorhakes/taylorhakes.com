@@ -1,11 +1,11 @@
 main.body-content(role="main")
   section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('post formatted ' + (page.tags || page.featured ? 'has-sub-meta' : '')))
-    .post-header
+    .post-header(style=(page.background ? 'background:url(' + page.background + ');' : ''))
       .header-wrap
         h1.post-title(itemprop="name headline")
           | !{page.title}
-        .post-meta By #{config.author} /
-          time(datetime=page.date itemprop="datePublished")= page.date.fromNow()
+        .post-meta By #{config.author} -
+          time(datetime=page.date itemprop="datePublished")= ' ' + page.date.format('MMM D, YYYY')
           .line
           if page.tags.length
             .post-meta
@@ -35,7 +35,7 @@ main.body-content(role="main")
         .next-label Next Story
         h2.post-title
           a(href=url_for(page.next.path))= page.next.title
-        .post-meta= page.next.date.fromNow()
+        .post-meta= page.next.date.format('MMM D, YYYY')
         .next-arrow
           a(href=url_for(page.next.path))
             i.fa.fa-angle-double-down
