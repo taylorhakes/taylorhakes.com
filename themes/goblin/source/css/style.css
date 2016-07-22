@@ -1138,7 +1138,7 @@ body[data-post-align="right"] .header .header-wrap .addition-container .search-b
   	position: absolute;
   	top: 50%;
   	left: 50%;
-  	margin-left: -2px;
+  	margin-left: -2.5px;
   	-moz-animation: scrollDownWheel .7s ease infinite;
   	-webkit-animation: scrollDownWheel .7s ease infinite;
   	transition: opacity 0.3s ease, margin-top 0.3s ease;
