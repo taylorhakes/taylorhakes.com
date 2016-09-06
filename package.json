@@ -2,8 +2,11 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "server": "hexo server"
+  },
   "hexo": {
-    "version": "3.1.1"
+    "version": "3.2.2"
   },
   "dependencies": {
     "hexo": "^3.1.0",
@@ -11,10 +14,10 @@
     "hexo-generator-cname": "^0.3.0",
     "hexo-generator-feed": "^1.0.3",
     "hexo-generator-index": "^0.1.2",
-    "hexo-generator-tag": "^0.1.1",
     "hexo-renderer-jade": "^0.1.0",
-    "hexo-renderer-marked": "^0.2.4",
     "hexo-renderer-stylus": "^0.3.0",
+    "hexo-generator-tag": "^0.1.1",
+    "hexo-renderer-marked": "^0.2.4",
     "hexo-server": "^0.1.2"
   }
 }

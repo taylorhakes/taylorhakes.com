@@ -4,9 +4,9 @@
 
 # Site
 title: Taylor Hakes
-subtitle: New York Web Developer, Golfer, Tech Enthusiast
-search_title: Taylor Hakes - New York Web Developer, Golfer, Tech Enthusiast
-description: Taylor Hakes is a web developer living in New York. Taylor currently works at IEX developing with Javascript, Node, Python and HTML.
+subtitle: New York Software Engineer, Golfer, Tech Enthusiast
+search_title: Taylor Hakes - New York Web Software Engineer, Golfer, Tech Enthusiast
+description: Taylor Hakes is a software engineer living in New York. Taylor currently works at IEX developing with Javascript, Node, Python and HTML.
 author: Taylor Hakes
 language: EN-US
 timezone: EST
@@ -43,7 +43,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: true
   tab_replace:
 
