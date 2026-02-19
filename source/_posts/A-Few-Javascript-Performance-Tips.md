@@ -1,5 +1,5 @@
 title: A Few Javascript Performance Tips
-permalink: a-few-javascript-performance-tips
+permalink: a-few-javascript-performance-tips/
 id: 4
 date: 2013-05-19
 ---

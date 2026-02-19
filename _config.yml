@@ -4,12 +4,12 @@
 
 # Site
 title: Taylor Hakes
-subtitle: New York Software Engineer, Golfer, Tech Enthusiast
-search_title: Taylor Hakes - New York Web Software Engineer, Golfer, Tech Enthusiast
-description: Taylor Hakes is a software engineer living in New York. Taylor currently works at IEX developing with Javascript, Node, Python and HTML.
+subtitle: San Diego Software Engineer, Golfer, Tech Enthusiast
+search_title: Taylor Hakes - San Diego Web Software Engineer, Golfer, Tech Enthusiast
+description: Taylor Hakes is a software engineer living in San Diego. Taylor currently works with Javascript, Node, Python and HTML.
 author: Taylor Hakes
 language: EN-US
-timezone: EST
+timezone: America/Los_Angeles
 cover_img: /img/cover.jpg
 author_img: /img/author.jpg
 

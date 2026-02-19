@@ -1,5 +1,5 @@
 title: Creating a clock with setInterval
-permalink: creating-a-clock-with-setinterval
+permalink: creating-a-clock-with-setinterval/
 id: 3
 date: 2015-08-03
 ---

@@ -1,5 +1,5 @@
 title: React Javascript NYC Talk
-permalink: react-javascript-nyc-talk
+permalink: react-javascript-nyc-talk/
 id: 7
 date: 2015-10-29
 ---

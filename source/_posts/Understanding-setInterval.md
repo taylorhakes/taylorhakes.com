@@ -1,5 +1,5 @@
 title: Understanding setInterval
-permalink: understanding-setinterval
+permalink: understanding-setinterval/
 id: 2
 date: 2013-11-10
 ---

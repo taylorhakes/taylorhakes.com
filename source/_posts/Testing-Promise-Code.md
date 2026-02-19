@@ -1,5 +1,5 @@
 title: Testing Promise Code
-permalink: testing-promise-code
+permalink: testing-promise-code/
 id: 5
 date: 2015-08-19
 ---
