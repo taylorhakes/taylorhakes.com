@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#212121;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#424242;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Editor window frame -->
+  <g transform="translate(200,80)">
+    <rect x="0" y="0" width="800" height="440" rx="8" fill="#1e1e1e" stroke="#555" stroke-width="1" opacity="0.6"/>
+    <!-- Title bar -->
+    <rect x="0" y="0" width="800" height="30" rx="8" fill="#333" opacity="0.8"/>
+    <rect x="0" y="15" width="800" height="15" fill="#333" opacity="0.8"/>
+    <circle cx="20" cy="15" r="6" fill="#ff5f56" opacity="0.6"/>
+    <circle cx="40" cy="15" r="6" fill="#ffbd2e" opacity="0.6"/>
+    <circle cx="60" cy="15" r="6" fill="#27c93f" opacity="0.6"/>
+    <!-- Line numbers -->
+    <text x="20" y="60" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">1</text>
+    <text x="20" y="80" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">2</text>
+    <text x="20" y="100" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">3</text>
+    <text x="20" y="120" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">4</text>
+    <text x="20" y="140" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">5</text>
+    <text x="20" y="160" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">6</text>
+    <text x="20" y="180" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">7</text>
+    <text x="20" y="200" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">8</text>
+    <text x="20" y="220" font-family="monospace" font-size="13" fill="#858585" opacity="0.4">9</text>
+    <!-- Code with tab indicators -->
+    <text x="50" y="60" font-family="monospace" font-size="13" fill="#569cd6" opacity="0.5">function</text>
+    <text x="130" y="60" font-family="monospace" font-size="13" fill="#dcdcaa" opacity="0.5">formatCode</text>
+    <text x="248" y="60" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">() {</text>
+    <!-- Tab markers (arrows) -->
+    <text x="55" y="80" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="75" y="80" font-family="monospace" font-size="13" fill="#569cd6" opacity="0.5">const</text>
+    <text x="125" y="80" font-family="monospace" font-size="13" fill="#9cdcfe" opacity="0.5">spaces</text>
+    <text x="195" y="80" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">= 4;</text>
+    <text x="55" y="100" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="75" y="100" font-family="monospace" font-size="13" fill="#569cd6" opacity="0.5">const</text>
+    <text x="125" y="100" font-family="monospace" font-size="13" fill="#9cdcfe" opacity="0.5">tabs</text>
+    <text x="175" y="100" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">= 1;</text>
+    <text x="55" y="120" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="75" y="120" font-family="monospace" font-size="13" fill="#569cd6" opacity="0.5">if</text>
+    <text x="100" y="120" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">(useTabs) {</text>
+    <text x="55" y="140" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="75" y="140" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="95" y="140" font-family="monospace" font-size="13" fill="#569cd6" opacity="0.5">return</text>
+    <text x="155" y="140" font-family="monospace" font-size="13" fill="#ce9178" opacity="0.5">'\t'</text>
+    <text x="55" y="160" font-family="monospace" font-size="13" fill="#404040" opacity="0.8">&#x2192;</text>
+    <text x="75" y="160" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">}</text>
+    <text x="50" y="180" font-family="monospace" font-size="13" fill="#d4d4d4" opacity="0.5">}</text>
+    <!-- Tab size indicator -->
+    <g transform="translate(400,280)" opacity="0.3">
+      <text x="0" y="0" font-family="sans-serif" font-size="16" fill="#fff" text-anchor="middle">Tab Size:</text>
+      <rect x="-15" y="10" width="30" height="30" rx="4" fill="#569cd6" opacity="0.5"/>
+      <text x="0" y="32" font-family="monospace" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">4</text>
+      <rect x="25" y="10" width="30" height="30" rx="4" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
+      <text x="40" y="32" font-family="monospace" font-size="18" fill="#fff" text-anchor="middle">2</text>
+      <rect x="65" y="10" width="30" height="30" rx="4" fill="none" stroke="#fff" stroke-width="1" opacity="0.3"/>
+      <text x="80" y="32" font-family="monospace" font-size="18" fill="#fff" text-anchor="middle">8</text>
+    </g>
+  </g>
+</svg>

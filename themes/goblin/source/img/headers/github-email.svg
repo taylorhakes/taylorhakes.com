@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Background grid -->
+  <g opacity="0.05">
+    <line x1="0" y1="50" x2="1200" y2="50" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="150" x2="1200" y2="150" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="250" x2="1200" y2="250" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="350" x2="1200" y2="350" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="450" x2="1200" y2="450" stroke="#fff" stroke-width="1"/>
+    <line x1="0" y1="550" x2="1200" y2="550" stroke="#fff" stroke-width="1"/>
+  </g>
+  <!-- Email envelope -->
+  <g transform="translate(480,180)" opacity="0.4">
+    <rect x="0" y="0" width="240" height="160" rx="8" fill="none" stroke="#e94560" stroke-width="3"/>
+    <path d="M0 0 L120 90 L240 0" stroke="#e94560" stroke-width="3" fill="none"/>
+    <path d="M0 160 L90 90" stroke="#e94560" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M240 160 L150 90" stroke="#e94560" stroke-width="2" fill="none" opacity="0.5"/>
+  </g>
+  <!-- Shield / lock icon -->
+  <g transform="translate(560,220)" opacity="0.3">
+    <path d="M40 0 L75 15 L75 45 Q75 75 40 90 Q5 75 5 45 L5 15 Z" fill="none" stroke="#0f3460" stroke-width="3"/>
+    <circle cx="40" cy="42" r="10" fill="none" stroke="#e94560" stroke-width="2"/>
+    <rect x="35" y="50" width="10" height="14" rx="2" fill="#e94560" opacity="0.5"/>
+  </g>
+  <!-- Floating @ symbols -->
+  <text x="120" y="200" font-family="monospace" font-size="40" fill="#e94560" opacity="0.15">@</text>
+  <text x="900" y="350" font-family="monospace" font-size="50" fill="#e94560" opacity="0.12">@</text>
+  <text x="350" y="480" font-family="monospace" font-size="30" fill="#e94560" opacity="0.1">@</text>
+  <text x="800" y="150" font-family="monospace" font-size="35" fill="#e94560" opacity="0.1">@</text>
+  <!-- Binary data stream -->
+  <text x="50" y="550" font-family="monospace" font-size="14" fill="#fff" opacity="0.08">01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100</text>
+  <text x="50" y="570" font-family="monospace" font-size="14" fill="#fff" opacity="0.06">01110101 01110011 01100101 01110010 01000000 01100101 01111000 01100001 01101101 01110000 01101100</text>
+</svg>

@@ -2,6 +2,7 @@ title: Understanding setInterval
 permalink: understanding-setinterval/
 id: 2
 date: 2013-11-10
+background: /img/headers/understanding-setinterval.svg
 ---
 
 If you write a lot of Javascript, inevitably you find the need to use the functions setTimeout or setInterval.

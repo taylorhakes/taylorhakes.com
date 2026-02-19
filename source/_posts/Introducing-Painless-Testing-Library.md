@@ -1,6 +1,7 @@
 title: Introducing Painless Testing Library
 date: 2016-02-16
 permalink: introducing-painless-testing-library/
+background: /img/headers/painless-testing.svg
 tags:
 ---
 [Painless](https://github.com/taylorhakes/painless) is a new javascript testing library. It improves upon other libraries such as Mocha, Jasmine, and Tape. Painless comes bundled with the ability to run your tests, mock any dependencies and assert that your code is working. Here are some of the main issues trying to be solved by painless.

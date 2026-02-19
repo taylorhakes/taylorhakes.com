@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#263238;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#37474f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Timeline -->
+  <line x1="100" y1="300" x2="1100" y2="300" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <!-- Interval markers with pulses -->
+  <g opacity="0.5">
+    <circle cx="200" cy="300" r="20" fill="#26c6da" opacity="0.2"/>
+    <circle cx="200" cy="300" r="8" fill="#26c6da"/>
+    <line x1="200" y1="280" x2="200" y2="200" stroke="#26c6da" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="200" y="190" font-family="monospace" font-size="12" fill="#26c6da" text-anchor="middle" opacity="0.6">0ms</text>
+  </g>
+  <g opacity="0.5">
+    <circle cx="400" cy="300" r="20" fill="#26c6da" opacity="0.2"/>
+    <circle cx="400" cy="300" r="8" fill="#26c6da"/>
+    <line x1="400" y1="280" x2="400" y2="200" stroke="#26c6da" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="400" y="190" font-family="monospace" font-size="12" fill="#26c6da" text-anchor="middle" opacity="0.6">1000ms</text>
+  </g>
+  <g opacity="0.5">
+    <circle cx="600" cy="300" r="20" fill="#26c6da" opacity="0.2"/>
+    <circle cx="600" cy="300" r="8" fill="#26c6da"/>
+    <line x1="600" y1="280" x2="600" y2="200" stroke="#26c6da" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="600" y="190" font-family="monospace" font-size="12" fill="#26c6da" text-anchor="middle" opacity="0.6">2000ms</text>
+  </g>
+  <g opacity="0.5">
+    <circle cx="800" cy="300" r="20" fill="#26c6da" opacity="0.2"/>
+    <circle cx="800" cy="300" r="8" fill="#26c6da"/>
+    <line x1="800" y1="280" x2="800" y2="200" stroke="#26c6da" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="800" y="190" font-family="monospace" font-size="12" fill="#26c6da" text-anchor="middle" opacity="0.6">3000ms</text>
+  </g>
+  <g opacity="0.5">
+    <circle cx="1000" cy="300" r="20" fill="#26c6da" opacity="0.2"/>
+    <circle cx="1000" cy="300" r="8" fill="#26c6da"/>
+    <line x1="1000" y1="280" x2="1000" y2="200" stroke="#26c6da" stroke-width="2" stroke-dasharray="4,4" opacity="0.4"/>
+    <text x="1000" y="190" font-family="monospace" font-size="12" fill="#26c6da" text-anchor="middle" opacity="0.6">4000ms</text>
+  </g>
+  <!-- Arrow head at end -->
+  <polygon points="1100,295 1090,290 1090,310 1100,305" fill="#fff" opacity="0.3"/>
+  <!-- Execution blocks -->
+  <rect x="200" y="340" width="60" height="20" rx="3" fill="#ff7043" opacity="0.4"/>
+  <rect x="400" y="340" width="80" height="20" rx="3" fill="#ff7043" opacity="0.4"/>
+  <rect x="600" y="340" width="50" height="20" rx="3" fill="#ff7043" opacity="0.4"/>
+  <rect x="800" y="340" width="70" height="20" rx="3" fill="#ff7043" opacity="0.4"/>
+  <rect x="1000" y="340" width="55" height="20" rx="3" fill="#ff7043" opacity="0.4"/>
+  <!-- Labels -->
+  <text x="600" y="420" font-family="monospace" font-size="14" fill="#fff" text-anchor="middle" opacity="0.15">callback execution</text>
+  <!-- Event loop hint -->
+  <g transform="translate(200,480)" opacity="0.1">
+    <rect x="0" y="0" width="800" height="40" rx="6" fill="none" stroke="#fff" stroke-width="1"/>
+    <text x="400" y="25" font-family="monospace" font-size="14" fill="#fff" text-anchor="middle">Event Loop</text>
+  </g>
+</svg>

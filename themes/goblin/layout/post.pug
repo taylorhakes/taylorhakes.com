@@ -1,6 +1,6 @@
 main.body-content(role="main")
   section(itemscope itemtype="http://schema.org/BlogPosting" role="article" class=('post formatted ' + (page.tags || page.featured ? 'has-sub-meta' : '')))
-    .post-header(style=(page.background ? 'background:url(' + page.background + ');' : ''))
+    .post-header(class=(page.background ? 'has-background' : '') style=(page.background ? 'background:url(' + page.background + '); background-size:cover; background-position:center;' : ''))
       .header-wrap
         h1.post-title(itemprop="name headline")
           | !{page.title}

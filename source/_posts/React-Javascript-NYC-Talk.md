@@ -2,6 +2,7 @@ title: React Javascript NYC Talk
 permalink: react-javascript-nyc-talk/
 id: 7
 date: 2015-10-29
+background: /img/headers/react-talk.svg
 ---
 
 I recently gave a talk on how to "Supercharge your React.js Development." The video was just posted online.

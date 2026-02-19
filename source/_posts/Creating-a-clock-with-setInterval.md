@@ -2,6 +2,7 @@ title: Creating a clock with setInterval
 permalink: creating-a-clock-with-setinterval/
 id: 3
 date: 2015-08-03
+background: /img/headers/clock-setinterval.svg
 ---
 
 If you have ever created a Javascript clock, you may have noticed some issues with using setInterval to update the time.

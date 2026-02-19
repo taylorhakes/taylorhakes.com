@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0533;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#c2185b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#sky)"/>
+  <!-- Stars -->
+  <circle cx="100" cy="80" r="2" fill="#fff" opacity="0.8"/>
+  <circle cx="250" cy="40" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="400" cy="100" r="2" fill="#fff" opacity="0.7"/>
+  <circle cx="550" cy="30" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="700" cy="70" r="2.5" fill="#fff" opacity="0.8"/>
+  <circle cx="850" cy="50" r="1.5" fill="#fff" opacity="0.6"/>
+  <circle cx="1000" cy="90" r="2" fill="#fff" opacity="0.7"/>
+  <circle cx="1100" cy="45" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="150" cy="130" r="1" fill="#fff" opacity="0.4"/>
+  <circle cx="650" cy="120" r="1.5" fill="#fff" opacity="0.5"/>
+  <circle cx="950" cy="110" r="1" fill="#fff" opacity="0.3"/>
+  <!-- Sun -->
+  <circle cx="600" cy="320" r="80" fill="#ff8f00" opacity="0.9"/>
+  <circle cx="600" cy="320" r="60" fill="#ffb300" opacity="0.7"/>
+  <!-- Desert ground -->
+  <path d="M0 420 Q150 380 300 410 Q450 370 600 400 Q750 360 900 390 Q1050 370 1200 400 L1200 600 L0 600 Z" fill="#4e342e"/>
+  <path d="M0 440 Q200 410 400 430 Q600 400 800 420 Q1000 400 1200 430 L1200 600 L0 600 Z" fill="#3e2723"/>
+  <!-- Cacti -->
+  <rect x="180" y="350" width="16" height="80" rx="8" fill="#2e7d32"/>
+  <rect x="170" y="370" width="12" height="30" rx="6" fill="#2e7d32" transform="rotate(-30 176 385)"/>
+  <rect x="194" y="360" width="12" height="35" rx="6" fill="#2e7d32" transform="rotate(25 200 377)"/>
+  <rect x="900" y="340" width="18" height="90" rx="9" fill="#2e7d32"/>
+  <rect x="888" y="355" width="12" height="35" rx="6" fill="#2e7d32" transform="rotate(-35 894 372)"/>
+  <rect x="916" y="365" width="12" height="30" rx="6" fill="#2e7d32" transform="rotate(30 922 380)"/>
+  <!-- Code brackets floating -->
+  <text x="350" y="250" font-family="monospace" font-size="60" fill="#fff" opacity="0.15" font-weight="bold">{</text>
+  <text x="800" y="280" font-family="monospace" font-size="60" fill="#fff" opacity="0.15" font-weight="bold">}</text>
+  <text x="500" y="200" font-family="monospace" font-size="40" fill="#fff" opacity="0.1" font-weight="bold">&lt;/&gt;</text>
+</svg>

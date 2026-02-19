@@ -1276,6 +1276,12 @@ POST FORMAT
 .body-content .post.odd{
 	background-color: #fff;
 }
+.body-content .post.odd .post-header.has-background{
+	background-color: transparent;
+}
+.body-content .post.even .post-header.has-background{
+	background-color: transparent;
+}
 .body-content .post .post-header{
 	padding: 110px 0 120px 0;
 	position: relative;
@@ -1288,6 +1294,13 @@ POST FORMAT
 	max-width: 900px;
 	padding-left: 40px;
 	padding-right: 40px;
+}
+.body-content .post.formatted .post-header.has-background .header-wrap{
+	background: rgba(0, 0, 0, 0.45);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	border-radius: 12px;
+	padding: 30px 40px;
 }
 .body-content .post .post-header .header-wrap .line{
 	width: 250px;

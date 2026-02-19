@@ -1,6 +1,7 @@
 title: Github exposes your personal email address
 permalink: get-any-github-users-email-address/
 date: 2016-02-07
+background: /img/headers/github-email.svg
 ---
 Github by default exposes your personal or work email in GIT history. It is not visible on the Github website, but easily available from the command line. 
 

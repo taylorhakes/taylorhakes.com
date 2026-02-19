@@ -1,10 +1,12 @@
 title: Wild West of Open Source Release Management
 permalink: wild-west-of-open-source-release-management/
 date: 2019-09-08
+background: /img/headers/wild-west.svg
 ---
-<!-- more -->
 
 Open source code is an amazing part of software development. There is a small group of lucky people that get to work on open source software full time, either paid by their company, work on a project that is usefull enough that it receives enough donations, or just financially stable enough personally to do it. The reality is that most people work on open source as a side project, either after work hours, during lunch etc. They devote some portion of their free time to working on a project that they make little or no money from. It's hard to enumerate all the benefits free open source has brought the software development community. I think most people that use open source software know and understand them well.
+
+<!-- more -->
 
 With all the benefits, I think it's sometimes good to talk about issues, so we can try to address them. One issue I have been thinking about recently is with release management. The process from taking a version of open source code in git/mecurial/etc. and releasing it as a consumable piece of software either for direct download, though an app store or a package manager, etc.
 

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a148c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7b1fa2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Promise chain visualization -->
+  <!-- .then() boxes -->
+  <g transform="translate(100,250)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="#fff" opacity="0.15"/>
+    <text x="80" y="35" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle" opacity="0.5">Promise</text>
+  </g>
+  <g transform="translate(330,250)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="#fff" opacity="0.15"/>
+    <text x="80" y="35" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle" opacity="0.5">.then()</text>
+  </g>
+  <g transform="translate(560,250)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="#fff" opacity="0.15"/>
+    <text x="80" y="35" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle" opacity="0.5">.then()</text>
+  </g>
+  <g transform="translate(790,250)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="#ce93d8" opacity="0.25"/>
+    <text x="80" y="35" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle" opacity="0.6">.resolve</text>
+  </g>
+  <!-- Catch branch -->
+  <g transform="translate(560,380)">
+    <rect x="0" y="0" width="160" height="60" rx="8" fill="#ef5350" opacity="0.15"/>
+    <text x="80" y="35" font-family="monospace" font-size="16" fill="#fff" text-anchor="middle" opacity="0.4">.catch()</text>
+  </g>
+  <!-- Arrows -->
+  <line x1="260" y1="280" x2="330" y2="280" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <line x1="490" y1="280" x2="560" y2="280" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <line x1="720" y1="280" x2="790" y2="280" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <line x1="640" y1="310" x2="640" y2="380" stroke="#ef5350" stroke-width="2" opacity="0.2" stroke-dasharray="5,5"/>
+  <!-- Arrow heads -->
+  <polygon points="330,275 320,270 320,280" fill="#fff" opacity="0.3"/>
+  <polygon points="560,275 550,270 550,280" fill="#fff" opacity="0.3"/>
+  <polygon points="790,275 780,270 780,280" fill="#fff" opacity="0.3"/>
+  <!-- Async dots -->
+  <circle cx="295" cy="280" r="3" fill="#ce93d8" opacity="0.5"/>
+  <circle cx="525" cy="280" r="3" fill="#ce93d8" opacity="0.5"/>
+  <circle cx="755" cy="280" r="3" fill="#ce93d8" opacity="0.5"/>
+  <!-- Background code -->
+  <text x="100" y="120" font-family="monospace" font-size="14" fill="#fff" opacity="0.07">async function test() {</text>
+  <text x="120" y="140" font-family="monospace" font-size="14" fill="#fff" opacity="0.07">  const result = await fetchData();</text>
+  <text x="120" y="160" font-family="monospace" font-size="14" fill="#fff" opacity="0.07">  expect(result).toBeDefined();</text>
+  <text x="100" y="180" font-family="monospace" font-size="14" fill="#fff" opacity="0.07">}</text>
+  <!-- Checkmark -->
+  <g transform="translate(1000,180)" opacity="0.2">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="#a5d6a7" stroke-width="2"/>
+    <path d="M-14 0 L-5 10 L14 -10" stroke="#a5d6a7" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

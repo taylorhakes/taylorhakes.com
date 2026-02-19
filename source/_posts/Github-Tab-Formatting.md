@@ -1,5 +1,6 @@
 title: Fix Github Tab Formatting
 date: 2016-04-18 21:14:57
+background: /img/headers/github-tabs.svg
 ---
 If you use tabs and commit your code to Github, you probably are annoyed at how Github formats your code. Github, by default, makes tabs appear as 8 spaces.
 

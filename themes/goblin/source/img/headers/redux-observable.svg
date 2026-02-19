@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Data stream lines -->
+  <path d="M0 200 Q300 100 600 200 Q900 300 1200 200" stroke="#fff" stroke-width="2" fill="none" opacity="0.2"/>
+  <path d="M0 300 Q300 200 600 300 Q900 400 1200 300" stroke="#fff" stroke-width="2" fill="none" opacity="0.15"/>
+  <path d="M0 400 Q300 300 600 400 Q900 500 1200 400" stroke="#fff" stroke-width="2" fill="none" opacity="0.1"/>
+  <!-- Redux-style nodes -->
+  <circle cx="200" cy="250" r="40" fill="none" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <circle cx="200" cy="250" r="15" fill="#fff" opacity="0.3"/>
+  <circle cx="600" cy="300" r="55" fill="none" stroke="#fff" stroke-width="3" opacity="0.5"/>
+  <circle cx="600" cy="300" r="20" fill="#fff" opacity="0.3"/>
+  <circle cx="1000" cy="250" r="40" fill="none" stroke="#fff" stroke-width="3" opacity="0.4"/>
+  <circle cx="1000" cy="250" r="15" fill="#fff" opacity="0.3"/>
+  <!-- Connecting arrows -->
+  <line x1="240" y1="250" x2="545" y2="300" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <line x1="655" y1="300" x2="960" y2="250" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  <!-- Arrow heads -->
+  <polygon points="545,295 535,290 535,305" fill="#fff" opacity="0.3"/>
+  <polygon points="960,245 950,240 950,255" fill="#fff" opacity="0.3"/>
+  <!-- Small floating dots (data) -->
+  <circle cx="350" cy="260" r="5" fill="#e1bee7" opacity="0.6"/>
+  <circle cx="420" cy="275" r="4" fill="#e1bee7" opacity="0.5"/>
+  <circle cx="750" cy="285" r="5" fill="#e1bee7" opacity="0.6"/>
+  <circle cx="830" cy="265" r="4" fill="#e1bee7" opacity="0.5"/>
+  <!-- Rx marble diagram dots -->
+  <circle cx="100" cy="450" r="12" fill="#e91e63" opacity="0.6"/>
+  <circle cx="250" cy="450" r="12" fill="#9c27b0" opacity="0.6"/>
+  <circle cx="400" cy="450" r="12" fill="#2196f3" opacity="0.6"/>
+  <circle cx="550" cy="450" r="12" fill="#e91e63" opacity="0.6"/>
+  <circle cx="700" cy="450" r="12" fill="#9c27b0" opacity="0.6"/>
+  <circle cx="850" cy="450" r="12" fill="#2196f3" opacity="0.6"/>
+  <circle cx="1000" cy="450" r="12" fill="#e91e63" opacity="0.6"/>
+  <line x1="80" y1="450" x2="1120" y2="450" stroke="#fff" stroke-width="1" opacity="0.2"/>
+</svg>

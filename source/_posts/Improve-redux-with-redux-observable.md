@@ -1,6 +1,7 @@
 title: Improve Redux with redux-observable
 permalink: improve-redux-with-redux-observable/
 date: 2016-09-06 00:00:00
+background: /img/headers/redux-observable.svg
 ---
 Redux is a great way to manage your state in any React application. To learn the basics of Redux, visit the [Redux website](http://redux.js.org/) . 
 

@@ -2,6 +2,7 @@ title: Testing Promise Code
 permalink: testing-promise-code/
 id: 5
 date: 2015-08-19
+background: /img/headers/testing-promises.svg
 ---
 
 If you have ever tried to write tests for Promise based code, you may have realized it's not exactly straight forward.
